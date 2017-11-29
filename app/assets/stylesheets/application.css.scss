@@ -1,0 +1,612 @@
+@import "tables";
+@import "bootstrap-sprockets";
+@import "bootstrap";
+/*汎用色の定義*/
+$skyblue: #1097FF;
+$yellow: #FFBF00;
+$orange: #FF9200;
+$blue: #2525ff;
+$purple: #A176CC;
+$deep_purple: #663498;
+html{
+  font-family: Verdana,sans-serif; /*フォントの指定*/
+  line-height: 1.5; /*行の高さを指定*/
+  font-size: 62.5%; /*一般的なブラウザの文字サイズ16pxを元に10pxを指定。これにより1rem=10pxとなる。*/
+  box-sizing: content-box;
+  /*全般設定*/
+  h1{
+    font-size: 30px;
+  }
+  h2{
+    font-size: 25px;
+  }
+  h3{
+    font-size: 20px;
+  }
+  a{
+    text-decoration: none;
+  }
+  .red{
+   color: red;
+  }
+  .orange{
+   color: #FF6600;
+  }
+  body{
+    background-color: white;
+    font-size: 1.2rem;
+    margin: 0 auto 30px;
+    .clearfix::after { /*float使う要素の親階層に指定*/
+      content: '';
+      display: block;
+      clear: both;
+    }
+    .hidden{ /*表示させない要素*/
+     display: none;
+    }
+    /*ヘッダー*/
+    header{
+      width: 100%;
+      margin: 0 auto;
+      padding: 0;
+      background-color: $skyblue;
+      /*ロゴ部分*/
+      #menu_logo{
+        width: 960px;
+        margin: 0 auto;
+        padding: 0;
+        .logo{
+          /*ロゴの大きさを指定*/
+          width: 30%;
+          height: 100px;
+          margin: 0 auto;
+          background: url(image-path("logo.png"));
+          overflow: hidden;
+          text-indent: 100%;
+          white-space: nowrap;
+          float: left;
+          a{ /*ロゴ部分のリンクを指定*/
+            display: block;
+            width: 100%;
+            height: 100%;
+          }
+        }
+        #dropmenu{ /*全体の枠を指定*/
+          float: right;
+          list-style-type: none; /*リストのマーカーを無しに指定*/
+          width: 70%; /*幅*/
+          max-width: 70%; /*幅の上限*/
+          height: 100px; /*高さ*/
+          margin: 0 auto; /*境界外側からの余白*/
+          padding: 40px 0 0; /*境界内側からの余白*/
+          background: $skyblue; /*枠内部の色*/
+          border-bottom: 5px solid $blue; /*下側の枠線の太さと色*/
+          border-radius: 3px 3px 0 0; /*角の丸み。左上・右上・右下・左下の順で指定*/
+          box-sizing: border-box;
+          li{ /*メニューバーの項目*/
+            position: relative;
+            width: 12.5%; /*8分割*/
+            float: left; /*左側から詰める*/
+            margin: 0; /*境界外側からの余白*/
+            padding: 0; /*境界内側からの余白*/
+            text-align: center; /*テキストは枠の中央揃え*/
+            border-right: 0.5px solid #93D0FF;
+            border-top: 0.5px solid #93D0FF;
+            &:first-child{
+              border-left: 0.5px solid #93D0FF;
+            }
+            a{ /*リンクをブロック化する奴。多分。*/
+              display: block; /*ブロックボックスの生成*/
+              height: 60px;
+              margin: 0; /*境界外側からの余白*/
+              color: #fff; /*ボックスの色*/
+              font-size: 1.5rem; /*リンク文字のフォントサイズ*/
+              font-weight: bold; /*フォントの太さ*/
+              line-height: 60px; /*行の高さ*/
+              text-decoration: none; /*文字装飾。*/
+            }
+            &:hover{
+              & > a{ /*マウスが乗った時のブロックの変化*/
+                background: $blue; /*ブロックの色*/
+                color: $yellow; /*文字色*/
+              }
+              ul{
+                li{ /*親メニューにマウスオーバーした時の子メニュー*/
+                  overflow: visible; /*見えるようになる*/
+                  height: 38px; /*高さ*/
+                  border-top: 0.5px solid #93D0FF; /*上ボーダーの設定。太さ・線種類(solid=一本線)・色*/
+                  border-bottom: 0.5px solid #93D0FF; /*上ボーダーの設定。太さ・線種類(solid=一本線)・色*/
+                  border-right: 0;
+                  z-index: 1;/*小メニューが記事の下に潜り込まないように設定。*/
+                  box-sizing: content-box;
+                  a{
+                    box-sizing: content-box;
+                  }
+                }
+              }
+            }
+            ul{ /*サブメニュー全体の設定*/
+              list-style: none; /*マーカーの指定*/
+              position: absolute; /*絶対位置での配置*/
+              top: 100%; /*サブメニューボックスの高さ。親メニュー１つ分(100%)*/
+              left: 0; /*自動指定*/
+              margin: 0;
+              padding: 0;
+              border-radius: 0 0 3px 3px; /*角の丸み*/
+              li{ /*子階層の通常時の設定*/
+                border-top: 0; /*上側のボーダーを消す。*/
+                overflow: hidden; /*全体の枠からはみ出す部分は隠す*/
+                width: 100%; /*親階層の幅と合わせる*/
+                height: 0; /*そもそも表示させない*/
+                color: #fff; /*子階層の色*/
+                /*時間変化の記述。0.2秒で変化させる。*/
+                -moz-transition: .2s; /*Firefox*/
+                -webkit-transition: .2s; /*chrome,safari向け*/
+                -o-transition: .2s; /*Opera*/
+                -ms-transition: .2s; /*IE*/
+                transition: .2s; /*その他*/
+                box-sizing: content-box;
+                &:first-child{ /*親メニューにマウスオーバーした時の子メニューのうち、一番上。*/
+                  border-top: 0; /*上側のボーダーを消す。*/
+                }
+                &:last-child{ /*親メニューにマウスオーバーした時の子メニューのうち、一番下。*/
+                  border-bottom: 0; /*下側のボーダーを消す。*/
+                  a{ /*親メニューにマウスオーバーした時の子メニューのうち、一番下のリンクボックス*/
+                    border-radius: 0 0 3px 3px; /*角の丸み。*/
+                  }
+                }
+                a{ /*子メニューのリンク文字*/
+                  padding: 4px 4px; /*境界内側からの余白*/
+                  height: 31px;
+                  line-height: 31px;
+                  background: $skyblue; /*背景色*/
+                  font-size: 12px; /*文字の大きさ*/
+                  font-weight: normal; /*文字の太さ*/
+                }
+              }
+            }
+            &:last-child{
+              ul{ /*一番右のサブメニューの設定*/
+                left: 0%; /*左端を親階層と合わせる*/
+                width: 0%; /*サブメニューの幅を親階層と合わせる*/
+              }
+            }
+          }
+          & > li{
+            &:hover{
+              & > a{ /*マウスが乗った時のブロックの変化。属性の前に">"がつくことで子階層のみに影響(孫階層以下には影響しない)*/
+                border-radius: 3px 3px 0 0; /*角の丸み。*/
+              }
+            }
+          }
+        }
+      }
+    }
+    .admin_header{
+      @extend header;
+      background-color: $purple;
+      #menu_logo{
+        .logo{
+          background-image: url(image-path("logo.png"));
+        }
+        #dropmenu_admin{
+          @extend #dropmenu;
+          background: $purple;
+          border-bottom-color: $deep_purple;
+          li{
+            border-right: 0.5px solid #C693FB;
+            border-top: 0.5px solid #C693FB;
+            &:first-child{
+              border-left: 0.5px solid #C693FB;
+            }
+            &:hover{
+              & > a{
+                background: $deep_purple; /*ブロックの色*/
+                color: $yellow; /*文字色*/
+              }
+            }
+          }
+        }
+      }
+    }
+    /*コンテンツ*/
+    main{
+      width: 960px;
+      margin: 10px auto 30px;
+      .contents{ /*メイン文章エリア*/
+        width: 960px;
+        margin: 30px auto 30px;
+        time{
+          text-align: right;
+        }
+        img{
+          max-width: 960px;
+        }
+        .date-select{
+          display: inline-block;
+          width: auto;
+        }
+        form{
+          margin: 10px 0;
+          .check_box-big{
+            height: 30px;
+            margin: 4px 10px 0 10px;
+            box-sizing: border-box;
+          }
+        }
+        .pagination{
+          display: block;
+          font-size: 1.6rem;
+          .current{
+            font-style: normal;
+            font-weight: 600;
+          }
+        }
+        #notice{
+          font-size: 1.5rem;
+          border: 5px solid #C57124;
+          background-color: #FFB797;
+          padding: 5px;
+          margin: 5px 0;
+        }
+        #error_explanation{
+          font-size: 1.5rem;
+          border: 5px solid #B20810;
+          background-color: #FBBABD;
+          padding: 5px 10px;
+          margin: 5px 0;
+          h2{
+            margin-top: 5px;
+          }
+        }
+      }
+      .article{
+        width: 74%;
+        display: block;
+        float: left;
+        border: none;
+        height: auto;
+        box-sizing: border-box;
+      }
+      .heading{
+        display: block;
+        background: url(#);
+        color: $skyblue;
+        padding: 10px 12px;
+        letter-spacing: 1px;
+        font-size: 1.6rem;
+        text-align: center;
+      }
+      .center{
+        margin: auto;
+        text-align: center;
+      }
+      .box{
+        display: block;
+        height: 270px;
+        margin-bottom: 30px;
+        transition: opacity 0.15s;
+        &:hover{ /*マウスオーバー時の効果指定*/
+          opacity: 0.7; /*不透明度を指定*/
+        }
+        a{
+          &:hover{
+            text-decoration: none;
+          }
+        }
+        .image{
+          width: 50%;
+          height: 100%;
+        }
+        &:nth-of-type(even){
+          .image{
+            float: right;
+          }
+          .topic{
+            float: left;
+          }
+        }
+        &:nth-of-type(odd){
+          .image{
+            float: left;
+          }
+          .topic{
+            float: right;
+          }
+        }
+        .topic{
+          position: relative;
+          width: 50%;
+          height: 100%;
+          padding: 20px 10px 5px;
+          box-sizing: border-box; /*borderまでをwidthとする*/
+          background-color: #1097FF;
+          line-height: 1.6;
+        }
+        .title{
+          margin: 10px 20px 15px;
+          color: #FFF;
+          text-align: center;
+          font-weight: normal; /*見出し要素hにデフォルトの太字を解除*/
+          font-size: 2.0rem;
+        }
+        .desc{
+          color: #FFCD89;
+          font-size: 1.1rem;
+          list-style: none;
+          padding: 5px 10px;
+          text-align: left;
+          box-sizing: border-box;
+          width: 324px;
+          max-height: 172px;
+        }
+        .date{
+          color: #111;
+        }
+        .comment{
+          @extend .desc;
+          font-size: 1.4rem;
+        }
+      }
+      .half-box{
+        @extend .box;
+        width: 48.5%;
+        float: left;
+        margin: 5px;
+        box-sizing: border-box;
+        &:hover{
+          text-decoration: none;
+        }
+        a{
+          &:hover{
+            text-decoration: none;
+          }
+          .title{
+            margin: 0;
+            padding: 39px;
+          }
+        }
+        .desc{
+          font-size: 1.6rem;
+          padding: 20px 30px;
+        }
+      }
+      /*お問い合わせフォーム*/
+      .form{
+        width: 600px;
+        margin: 0 auto;
+        border: 1px solid #111;
+        .list_heading{
+          text-align: center;
+          display: block;
+          width: 100%;
+        }
+        .list_wrapper{
+          padding: 15px 0 0 0;
+        }
+        .list{
+          padding: 5px;
+          display: inline-block;
+          margin: 0 auto;
+          width: 420px;
+        }
+        label{
+          display: inline-block;
+          width: 132px;
+          text-align: right;
+        }
+        @mixin textarea{
+          font: 1em sans-serif;
+          width: 300px;
+          -moz-box-sizing: border-box;
+          box-sizing: border-box;
+          margin: 5px;
+          &:focus{
+            border-color: #000;
+          }
+        }
+        input{
+          display: inline-block;
+          width: 268px;
+          @include textarea;
+        }
+        #msg{
+          width: 430px;
+          height: 120px;
+        }
+      }
+      .low-height-box{
+        display: block;
+        height: 100px;
+        background: $skyblue;
+        .title{
+          margin: auto;
+          padding: 35px;
+          color: #FFCD89;
+        }
+      }
+      .horizontal-list{
+        list-style: none;
+        font-size: 1.5rem;
+        color: #aaa;
+      }
+      .sidemenu{ /*サイドメニュー*/
+        float: right;
+        width: 24%;
+        box-sizing: border-box;
+        .heading{
+          padding: 1px 5px;
+        }
+        h2{
+          margin: 7px auto;
+        }
+        h3{
+          font-size: 16px;
+          display: block;
+          background: $skyblue;
+          margin: 0;
+          padding: 10px;
+        }
+        .link{
+          text-align: left;
+          background: #91CFFF;
+          list-style: none;
+          margin: 0 auto;
+          padding: 0;
+          li{
+            border-top: 0.5px solid #fff;
+            box-sizing: border-box;
+            padding: 0 5px;
+            &:first-child{
+              border-bottom:  none;
+            }
+          }
+          a{
+            display: block;
+            padding: 10px 3px;
+            color: #111;
+            &:hover{
+              color: $orange;
+            }
+          }
+        }
+      }
+    }
+    footer{ /*フッターの設定*/
+      margin: 0 auto;
+      width: 100%;
+      color: #fff;
+      text-align: center;
+      padding: 10px 0 10px;
+      background-color: $purple;
+      li{
+        list-style: none;
+      }
+    }
+    .alert{
+      font-size: 1.8rem;
+    }
+  }
+}
+@media (max-width: 480px), (max-device-width: 480px){ /*smartphone用*/
+  html{
+    font-size: 120%;
+    body{
+      width: auto;
+      header{
+        z-index: 999;
+        background-color: white;
+        width: auto;
+        top: 0;
+        padding-top: 30px;
+        #dropmenu{
+          height: 128px;
+          border-bottom: 0px;
+          li{
+            width: 25%;
+            height: 50%;
+            a{
+              padding: 12px;
+              height: 100%;
+            }
+          }
+        }
+      }
+      main{
+        .main{
+          box-sizing: border-box;
+          margin: 303px 20px 280px;
+          width: auto;
+          bottom: 240px;
+        }
+        .contents{
+          margin: 300px 0 136px 0;
+          width: 100%;
+        }
+        .article{
+          width: 100%;
+          float: none;
+          padding-bottom: 30px;
+          .topics{
+            margin: 10px 0;
+            box-sizing: border-box;
+            height: auto;
+            .box{
+              width: 100%;
+              height: 100%;
+              margin: 0;
+              .image{
+                float: none;
+                width: 100%;
+                height: 100%;
+              }
+            }
+          }
+          .main-topic{
+            float: none;
+            width: 100%;
+            height: 80px;
+            padding: 0;
+            .date{
+              top: 10px;
+              left: 10px;
+            }
+            .title{
+              padding: 19px;
+              margin: 0;
+            }
+            .desc{
+              display: none;
+            }
+          }
+          .news{
+            margin: 20px 0;
+            float: none;
+            .scroll-list{
+              max-height: none;
+            }
+          }
+        }
+        .sidemenu{
+          display: none;
+          width: auto;
+          float: none;
+        }
+      }
+    }
+  }
+  .boxes .box{
+    height: auto;
+  }
+  .box .desc{
+      display: none;
+  }
+  .box .topic{
+      height: 76px;
+      padding: 0;
+      width: 100%;
+  }
+  .box .image{
+      height: 500px;
+      width: 100%;
+    overflow: hidden;
+  }
+
+  .low-height-box{
+    height: 127px;
+  }
+  footer{
+    position: fixed;
+    bottom: 0px;
+    max-height: 15%;
+  }
+}
+#triathlon{
+  h2{
+    border-bottom: double #111;
+    padding-bottom: 5px;
+  }
+}
+#tsukutora{
+  @extend #triathlon;
+}

@@ -1,0 +1,39 @@
+<div id="menu_logo" class="clearfix">
+  <% if controller.controller_name == "top" && controller.action_name == 'index' %>
+  <h1 class="logo">
+    <%= link_to t('general.team_name'), :root %>
+  </h1>
+  <% else %>
+  <p class="logo">
+    <%= link_to t('general.team_name'), :root %>
+  </p>
+  <% end %>
+  <nav>
+    <ul id="dropmenu_admin"> <!-- ページの上。全ページ固定-->
+      <li> <!--ホーム-->
+        <%= link_to t('nav_menu.admin_home'), admin_root_path %>
+      </li>
+      <li> <!--部・トライアスロン紹介-->
+        <%= link_to t('nav_menu.admin_members'), admin_members_path %>
+      </li>
+      <li> <!--部員紹介-->
+        <%= link_to t('nav_menu.admin_games'), admin_games_path %>
+      </li>
+      <li> <!--リザルト-->
+        <%= link_to t('nav_menu.admin_divisons'), admin_divisions_path %>
+      </li>
+      <li> <!--アルバム-->
+        <%= link_to t('nav_menu.admin_results'), admin_results_path %>
+      </li>
+      <li> <!--SNS-->
+        <%= link_to t('nav_menu.admin_topics'), admin_topics_path %>
+      </li>
+      <li> <!--リンク-->
+        <%= link_to t('nav_menu.admin_released_infos'), admin_released_infos_path %>
+      </li>
+      <li>
+        <%= link_to t('nav_menu.admin_images'), admin_images_path %>
+      </li>
+    </ul>
+  </nav>
+</div>

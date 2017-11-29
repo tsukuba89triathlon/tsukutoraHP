@@ -1,0 +1,51 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  user_id: MyString
+  password: MyString
+  status: 1
+  grade: 1
+  belong: MyString
+  hometown: MyString
+  school: MyString
+  sports: MyString
+  bike: MyString
+  q1: MyString
+  a1: MyString
+  q2: MyString
+  a2: MyString
+  q3: MyString
+  a3: MyString
+  s4: MyString
+  a4: MyString
+  s5: MyString
+  a5: MyString
+  part: MyString
+  goal: MyString
+  last: MyString
+
+two:
+  name: MyString
+  user_id: MyString
+  password: MyString
+  status: 1
+  grade: 1
+  belong: MyString
+  hometown: MyString
+  school: MyString
+  sports: MyString
+  bike: MyString
+  q1: MyString
+  a1: MyString
+  q2: MyString
+  a2: MyString
+  q3: MyString
+  a3: MyString
+  s4: MyString
+  a4: MyString
+  s5: MyString
+  a5: MyString
+  part: MyString
+  goal: MyString
+  last: MyString

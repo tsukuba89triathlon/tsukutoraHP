@@ -1,0 +1,28 @@
+<% @page_title = t('.title') %>
+<div class="contents clearfix">
+  <div class="heading">
+    <h1><%= "#{Member.find(session[:member_id]).full_name}さんの" + @page_title %></h1>
+  </div>
+  <% if notice %>
+  <div id="notice"><%= notice %></div>
+  <% end %>
+  <div class="boxes clearfix">
+    <% @images.each do |image| %>
+    <div class="image_box col-lg-3">
+      <%= image_tag "/#{image.full_path}", class: 'image_thumbnail' %>
+      <div class="desc">
+        <% if image.effective %>
+        順番：<%= image.order %>
+        <% else %>
+        現在、表示対象ではありません。
+        <% end %>
+        <br/>
+        <%= link_to t('general.edit'), edit_account_image_path(image), class:'btn btn-default' %>
+        <%= link_to t('general.delete'), "#", class:'btn btn-default' %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+  <%= link_to "#{t('general.new',{model: t('activerecord.models.image')})}", new_account_image_path, class: 'btn btn-default' %>
+  <%= link_to 'アカウントページに戻る', account_path, class: 'btn btn-default' %>
+</div>

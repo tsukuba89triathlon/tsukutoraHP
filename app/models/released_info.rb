@@ -1,0 +1,2 @@
+class ReleasedInfo < ApplicationRecord
+end

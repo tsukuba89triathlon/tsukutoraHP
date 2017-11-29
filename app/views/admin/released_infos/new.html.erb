@@ -1,0 +1,8 @@
+<% @page_title = t('.title') %>
+<div class="contents">
+  <div class="heading">
+    <h1><%= @page_title %></h1>
+  </div>
+  <%= render 'form', released_info: @released_info %>
+  <%= link_to t('general.back'), admin_released_infos_path, class: 'btn btn-default' %>
+</div>

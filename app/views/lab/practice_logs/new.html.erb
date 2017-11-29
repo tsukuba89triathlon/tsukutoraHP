@@ -1,0 +1,9 @@
+<% @page_title = "新規練習ログ作成" %>
+<div class="contents">
+  <div class="heading">
+    <h1><%= @page_title %></h1>
+  </div>
+  <%# @member.full_name %>
+  <%= render 'form', lab_practice_log: @lab_practice_log %>
+  <%= link_to 'アカウントページに戻る', account_path, class: "btn btn-default" %>
+</div>

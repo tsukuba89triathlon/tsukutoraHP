@@ -1,0 +1,39 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  game: MyString
+  date: 2017-08-14
+  division: MyString
+  total_rank: 1
+  dns: false
+  dnf: false
+  name: MyString
+  total_time: 2017-08-14 09:28:24
+  s_time: 2017-08-14 09:28:24
+  s_rank: 1
+  b_time: 2017-08-14 09:28:24
+  b_rank: 1
+  split: 2017-08-14 09:28:24
+  split_time: 2017-08-14 09:28:24
+  r_time: 2017-08-14 09:28:24
+  r_rank: 1
+  remarks: MyString
+
+two:
+  game: MyString
+  date: 2017-08-14
+  division: MyString
+  total_rank: 1
+  dns: false
+  dnf: false
+  name: MyString
+  total_time: 2017-08-14 09:28:24
+  s_time: 2017-08-14 09:28:24
+  s_rank: 1
+  b_time: 2017-08-14 09:28:24
+  b_rank: 1
+  split: 2017-08-14 09:28:24
+  split_time: 2017-08-14 09:28:24
+  r_time: 2017-08-14 09:28:24
+  r_rank: 1
+  remarks: MyString

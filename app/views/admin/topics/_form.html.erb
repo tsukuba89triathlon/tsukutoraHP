@@ -1,0 +1,45 @@
+<script>
+$(":file").filestyle({text: "ファイルを選択", btnClass: "btn-primary"});
+</script>
+<%= form_with(model: topic, local: true) do |form| %>
+  <% if topic.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= t('activerecord.errors.prohibited',{model: "#{t('activerecord.models.admin/topic')}", count: topic.errors.count})%></h2>
+
+      <ul>
+      <% topic.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :topic_title, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :date %><br>
+    <%= form.date_select :date, {use_month_numbers: true}, {id: :topic_date, class: 'form-control date-select'} %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :game_id %>
+    <%= form.collection_select :game_id, Admin::Game.all, :id, :game, {include_blank: "#{t('form.select')}"}, id: :topic_title, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :body %>
+    <%= form.text_area :body, id: :topic_body, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :image %>
+    <%= form.file_field :image, id: :topic_image, class: "filestyle", "data-text": "ファイルを選択", "data-btnClass": "btn-primary" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.submit '保存', class: 'btn btn-primary' %>
+  </div>
+<% end %>

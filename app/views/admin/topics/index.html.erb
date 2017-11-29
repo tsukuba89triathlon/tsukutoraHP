@@ -1,0 +1,30 @@
+<% @page_title = t('.title') %>
+<% attribute = ['activerecord','attributes','admin/topic'] %>
+<div class="contents">
+  <div class="heading">
+    <h1><%= @page_title %></h1>
+  </div>
+  <% if notice %><div id="notice"><%= notice %></div><% end %>
+  <table>
+    <thead>
+      <th><%= t :date, scope: attribute %></th>
+      <th><%= t :title, scope: attribute %></th>
+      <th><%= t :body, scope: attribute %></th>
+      <th colspan="3"></th>
+    </thead>
+    <tbody>
+      <% @topics.each do |topic| %>
+      <tr>
+        <td><%= time_tag topic.date, topic.date %></td>
+        <td><%= topic.title %></td>
+        <td><%= truncate("#{topic.body}", length: 30) %></td>
+        <td><%= link_to t('general.show'), topic %></td>
+        <td><%= link_to t('general.edit'), edit_admin_topic_path(topic) %></td>
+        <td><%= link_to t('general.delete'), admin_topic_path(topic), method: :delete, data: { confirm: "#{t('general.delete_confirm')}" } %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= will_paginate @topics, link_separator: ' | ' %>
+  <%= link_to "#{t('general.new',{model: "#{t('activerecord.models.admin/topic')}"})}", new_admin_topic_path, class: 'btn btn-default' %>
+</div>

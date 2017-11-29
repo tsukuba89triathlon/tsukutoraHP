@@ -1,0 +1,39 @@
+<script>
+$(":file").filestyle({text: "ファイルを選択", btnClass: "btn-primary"});
+</script>
+<%= form_with(model: image, local: true, multipart: true) do |form| %>
+  <% if image.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(image.errors.count, "error") %> prohibited this image from being saved:</h2>
+
+      <ul>
+      <% image.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% if controller.action_name != 'edit' %>
+  <div class="form-group">
+    <%= form.label :image %>
+    <%= form.file_field :image, size: 50, id: :image_image, class: "filestyle", "data-text": "ファイルを選択", "data-btnClass": "btn-primary" %>
+  </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :image_target_id %>
+    <%= form.select(:image_target_id, Admin::ImageTarget.all.map{ |target| [target.target_str,target.id] }, {}, id: :image_target, class: 'form-control') %>
+  </div>
+
+  <% if controller.action_name != 'new' %>
+  <div class="field form-group">
+    <%= form.label :effective %>
+    <%= form.check_box :effective, class: 'form-control' %>
+  </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.submit class: 'btn btn-primary' %>
+  </div>
+<% end %>

@@ -1,0 +1,48 @@
+<% @page_title = "OB・OG" %>
+<div class="contents clearfix">
+  <article class="article">
+    <div class="heading">
+      <h1><%= @page_title %></h1>
+    </div>
+    <div class="desc">
+      <% grad_year = 0; years = %w{} %>
+      <% @members.each do |m| %>
+        <% if (grad_year != m.graduated_year.year) %>
+          <% grad_year = m.graduated_year.year; years << m.graduated_year.year.to_s %>
+        <% end %>
+      <% end %>
+      <% years.each do |year| %>
+        <%= content_tag :table, class: :member, id: "#{year}" do %>
+          <caption><%= year.to_i %>年卒業！</caption>
+          <thead>
+            <tr>
+              <th>名前</th>
+              <td>備考</td>
+            </tr>
+          </thead>
+          <tbody>
+            <% @members.where('graduated_year = ?', Date.new(year.to_i,3,31)).each do |member| %>
+              <tr>
+                <th><%= member.full_name %></th>
+                <td><%= member.remark %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        <% end %>
+      <% end %>
+    </div>
+  </article>
+  <aside class="sidemenu">
+    <div class="heading">
+      <h2>メニュー</h2>
+    </div>
+    <%= content_tag :h3, "卒業年度" %>
+    <ul class="link">
+      <% years.each do |year| %>
+        <%= content_tag :li do %>
+					<%= link_to "#{year.to_s}年度卒業", url_for(controller: :members, action: :obog, anchor: "#{year.to_i}") %>
+        <% end %>
+      <% end %>
+    </ul>
+  </aside>
+</div>

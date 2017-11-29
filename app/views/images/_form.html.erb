@@ -1,0 +1,41 @@
+<script>
+$(":file").filestyle({text: "ファイルを選択", btnClass: "btn-primary"});
+</script>
+<%= form_with(model: image, local: true, url: @image_url) do |form| %>
+  <% if image.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(image.errors.count, "error") %> prohibited this image from being saved:</h2>
+
+      <ul>
+      <% image.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <% if controller.action_name == ('new' || 'create') %>
+  <div class="form-group">
+    <%= form.label :image, '画像' %>
+    <%= form.file_field :image, id: :image_image,
+    class: "filestyle", "data-text": "ファイルを選択", "data-btnClass": "btn-primary" %>
+  </div>
+  <% else %>
+  <%= image_tag "/#{image.full_path}", class: 'image_thumbnail', height: 300 %>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :order, '表示順序' %>
+    <%= form.number_field :order, id: :image_order, class: 'form-control' %>
+  </div>
+
+  <% if controller.action_name == ('edit' || 'update') %>
+  <div class="form-group">
+    <%= form.label :effective, '表示/非表示' %>
+    <%= form.check_box :effective, id: :image_effective, class: 'form-control' %>
+  </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.submit '保存', class: 'btn btn-primary' %>
+  </div>
+<% end %>

@@ -1,0 +1,39 @@
+<% @page_title = t('.title') %>
+<div class="contents clearfix">
+  <div class="heading">
+    <h1><%= @page_title %></h1>
+  </div>
+  <% if notice %><div id="notice"><%= notice %></div><% end %>
+  <div class="caution">
+    プロフィール等の関係があるので、すでになくなった学類/専攻についても削除はしないようにしてください。<br/>
+    削除機能は、誤って同じ学類/専攻のデータを2つ以上作ってしまった場合などのみに使用してください。
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th><%= t('activerecord.attributes.admin/college.school') %></th>
+        <th><%= t('activerecord.attributes.admin/college.college') %></th>
+        <th><%= t('activerecord.attributes.admin/college.abbreviation') %></th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% school = 0 %>
+      <% @colleges.each do |college| %>
+        <tr>
+          <% unless college.school_id == school %>
+          <% school = college.school_id %>
+          <%= content_tag :td, college.school.school, rowspan: "#{@colleges.where(school_id: college.school_id).count}" %>
+          <% end %>
+          <td><%= college.college %></td>
+          <td><%= college.abbreviation %></td>
+          <td><%= link_to t('general.show'), college %></td>
+          <td><%= link_to t('general.edit'), edit_admin_college_path(college) %></td>
+          <td><%= link_to t('general.delete'), college, method: :delete, data: { confirm: t('general.delete_confirm') } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= link_to "#{t('general.new',{model: t('activerecord.models.admin/college')})}", new_admin_college_path, class: 'btn btn-default' %>
+<div>

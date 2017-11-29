@@ -1,0 +1,72 @@
+// Place all the styles related to the results controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.box{
+  .desc{
+      white-space: nowrap;
+      overflow-x: hidden;
+      text-overflow: ellipsis;
+      font-size: 1.2rem;
+  }
+}
+.result{
+  border: 2px solid #111;
+  margin: 25px 5px 10px 5px;
+  width: 100%;
+  text-align: center;
+  .title{
+    text-align: left;
+    font-size: 1.6rem;
+    border-bottom: 2px dashed #111;
+    margin-bottom: 15px;
+    padding-left: 10px;
+  }
+  table{
+    thead{
+      th{
+        background-color: rgb(240, 240, 240);
+        background-repeat: repeat-x;
+        border-collapse: collapse;
+        border-left: 1px solid #1C5D79;
+        border-right: 1px solid #1C5D79;
+        border-bottom: 3px double #111;
+        color: #FF8C00;
+        height: 32px;
+        line-height: 32px;
+        padding: 3px 10px;
+        text-align: center;
+      }
+      td{
+        padding: 3px 10px;
+      }
+    }
+    tbody{
+      tr{
+        background-color: #dfedf3;
+        border: 1px solid #111;
+        padding: 3px 10px;
+      }
+      th{
+        background-color: #1C5D79;
+        color: #fff;
+        padding: 3px 10px;
+      }
+      td{
+        border-left: 1px solid #1C5D79;
+        border-right: 1px solid #1C5D79;
+        padding: 3px 10px;
+      }
+    }
+  }
+}
+.table_box{
+  display: block;
+  &:hover{
+    background-color: #FFCD89;
+  }
+}
+@media (max-width: 480px), (max-device-width: 480px){
+  table, tr, th, td{
+    padding: 0;
+  }
+}

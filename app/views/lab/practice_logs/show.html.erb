@@ -1,0 +1,44 @@
+<% @page_title = "練習ログ" %>
+<div class="contents">
+  <div class="heading">
+    <h1><%= @page_title %></h1>
+  </div>
+  <% if notice %><div id="notice"><%= notice %></div><% end %>
+  <h2 class="subtitle"><%= @lab_practice_log.member.full_name %>さんの練習ログ（<%= time_tag @lab_practice_log.date, @lab_practice_log.date %>分）</h2>
+  <h3>練習距離</h3>
+  <table class="menu">
+    <thead>
+      <tr>
+        <th>Swim</th>
+        <th>Bike</th>
+        <th>Run</th>
+        <th>換算走行距離</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @lab_practice_log.swim %></td>
+        <td><%= @lab_practice_log.bike %></td>
+        <td><%= @lab_practice_log.run %></td>
+        <td><%= @lab_practice_log.conversion_distance.round(3) %></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>コメント</h3>
+  <%= simple_format(h(@lab_practice_log.remark), :class => 'remark') %>
+
+  <div class="pager">
+    <% member_id = session[:member_id] ? session[:member_id] : nil %>
+    <% @previous_log = @lab_practice_log.previous(member_id) %>
+    <% @next_log = @lab_practice_log.next(member_id) %>
+    <% if @previous_log %>
+    <%= link_to '前へ', lab_practice_log_path(@previous_log), class: 'btn btn-default' %>
+    <% end %>
+    <% if @next_log %>
+    <%= link_to '次へ', lab_practice_log_path(@next_log), class: 'btn btn-default' %>
+    <% end %>
+  </div>
+  <%= link_to '一覧に戻る', lab_practice_logs_path, class: 'btn btn-primary' %>
+  <%= link_to t('general.edit'), edit_lab_practice_log_path(@lab_practice_log), class: 'btn btn-default' %>
+</div>

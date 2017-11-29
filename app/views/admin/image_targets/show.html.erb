@@ -1,0 +1,23 @@
+<% @page_title = t('.title') %>
+<div class="contents">
+  <div class="heading">
+    <h1><%= @page_title %></h1>
+  </div>
+  <% if notice %><div id="notice"><%= notice %></div><% end %>
+  <table class="menu">
+    <thead>
+      <tr>
+        <th><%= t('activerecord.attributes.admin/image_target.target') %></th>
+        <th><%= t('activerecord.attributes.admin/image_target.path') %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @image_target.target_str %></td>
+        <td><%= @image_target.path %></td>
+      </tr>
+    </tbody>
+  </table>
+  <%= link_to t('general.edit'), edit_admin_image_target_path(@image_target), class: 'btn btn-default' %>
+  <%= link_to t('general.back'), admin_image_targets_path, class: 'btn btn-default' %>
+</div>

@@ -1,0 +1,104 @@
+<% @page_title = t("general.grade.#{controller.action_name}")%>
+<script>
+$(document).ready(function(){
+  $('.bxslider').bxSlider({
+    mode: 'fade',
+    auto: true,
+    autoControls: true,
+    pause: 3500,
+    speed: 800
+  });
+});
+</script>
+<div class="contents">
+  <% grade = 0 %>
+  <% @members.each do |member| %>
+    <% if grade != member.grade; grade = member.grade %>
+    <div class="heading">
+      <% if member.grade < 10 %>
+      <h1 class="year"><%= @page_title %></h1>
+      <% year = Date.today.months_ago(3).year - grade + 1 %>
+      <h2 class="subtitle"><%= t('.enter',{year: year})%></h2>
+      <% else %>
+      <h1 class="year"><%= t("general.grade.#{member.grade_str}") %></h1>
+      <% end %>
+    </div>
+    <% end %>
+    <div class="profile clearfix">
+      <%= render 'profile_image', member: member %>
+      <div class="desc">
+        <table class="member">
+          <caption><%= member.full_name %></caption>
+          <tbody>
+            <tr>
+                <th><%= t('activerecord.attributes.member.belong') %></th>
+                <td><%= member.belong %></td>
+            </tr>
+            <tr>
+                <th><%= t('activerecord.attributes.member.hometown') %></th>
+                <td><%= member.hometown %></td>
+            </tr>
+            <tr>
+                <th><%= t('activerecord.attributes.member.school') %></th>
+                <td><%= member.school %></td>
+            </tr>
+            <tr>
+                <th><%= t('activerecord.attributes.member.sports') %></th>
+                <td><%= member.sports %></td>
+            </tr>
+            <tr>
+                <th><%= t('activerecord.attributes.member.bike') %></th>
+                <td><%= member.bike %></td>
+            </tr>
+            <tr>
+                <th><%= t('activerecord.attributes.member.part') %></th>
+                <td><%= member.part %></td>
+            </tr>
+            <tr>
+                <th><%= t('activerecord.attributes.member.addiction') %></th>
+                <td><%= member.addiction %></td>
+            </tr>
+            <tr>
+                <th><%= t('activerecord.attributes.member.goal') %></th>
+                <td><%= member.goal %></td>
+            </tr>
+            <% if member.q1.present? %>
+              <tr>
+                <th><%= member.q1 %></th>
+                <td><%= member.a1 %></td>
+              </tr>
+            <% end %>
+            <% if member.q2.present? %>
+              <tr>
+                <th><%= member.q2 %></th>
+                <td><%= member.a2 %></td>
+              </tr>
+            <% end %>
+            <% if member.q3.present? %>
+              <tr>
+                <th><%= member.q3 %></th>
+                <td><%= member.a3 %></td>
+              </tr>
+            <% end %>
+            <% if member.q4.present? %>
+              <tr>
+                <th><%= member.q4 %></th>
+                <td><%= member.a4 %></td>
+              </tr>
+            <% end %>
+            <% if member.q5.present? %>
+              <tr>
+                <th><%= member.q5 %></th>
+                <td><%= member.a5 %></td>
+              </tr>
+            <% end %>
+            <tr>
+              <th><%= t('activerecord.attributes.member.last') %></th>
+              <td><%= member.last %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  <% end %>
+</div>

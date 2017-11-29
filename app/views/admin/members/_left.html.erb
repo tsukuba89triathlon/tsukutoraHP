@@ -1,0 +1,22 @@
+<table class="menu">
+  <caption><%= t('general.member_status.left_member') %></caption>
+  <thead>
+    <tr>
+      <th><%= t('activerecord.attributes.admin/member.full_name') %></th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% year = 0 %>
+    <% @left.each do |member| %>
+    <tr>
+      <th><%= member.full_name %></th>
+      <td><%= link_to t('general.show'), admin_member_path(member) %></td>
+      <td><%= link_to t('general.edit'), edit_admin_member_path(member) %></td>
+      <td><%= link_to t('general.delete'), admin_member_path(member), method: :delete, data: {confirm: t('general.delete_confirm')} %></td>
+      <td></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @left, link_separator: ' | ' %>

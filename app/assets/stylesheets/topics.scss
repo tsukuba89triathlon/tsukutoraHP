@@ -1,0 +1,53 @@
+// Place all the styles related to the topics controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+html{
+  body{
+    .contents{
+      .prepare{
+        text-align: center;
+        font-size: 2rem;
+        margin: 15px 0;
+      }
+      .topic-heading{
+        padding-bottom: 5px;
+        border-bottom: double #111;
+      }
+      .topic-body{
+        box-sizing: border-box;
+        padding: 10px;
+        font-size: 1.4rem;
+      }
+      .date{
+        font-size: 1.5rem;
+        display: block;
+      }
+      .topic_image{
+        display: block;
+        margin: 0 auto;
+        height: 320px;
+      }
+      .topic_title{
+        padding-bottom: 5px;
+        border-bottom: 2px dashed #111;
+      }
+      .detail-info{
+        border-top: 0.5px solid #111;
+        text-align: right;
+        padding: 5px;
+      }
+    }
+    .monthly_topics{
+      width: 24%;
+      float: right;
+      margin: 0 5px;
+      ul{
+        li{
+          ul{
+            padding-left: 20px;
+          }
+        }
+      }
+    }
+  }
+}

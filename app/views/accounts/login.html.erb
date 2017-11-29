@@ -1,0 +1,22 @@
+<% @page_title = "ログインページ" %>
+<div class="contents">
+  <div class="heading">
+    <h1><%= @page_title %></h1>
+  </div>
+  <% if notice %><div id="notice"><%= notice %></div><% end %>
+  <% if flash.alert %><p class="alert"><%= flash.alert %></p><% end %>
+  <%= form_tag :session do %>
+    <div class="form-group">
+      <%= label_tag :username, 'ユーザー名' %>
+      <%= text_field_tag :username, '', id: "user_name", class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= label_tag :password, 'パスワード' %>
+      <%= password_field_tag :password, '', id: "password", class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= hidden_field_tag :referer, flash[:referer] %>
+      <%= submit_tag 'ログイン', class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,8 @@
+<thead>
+  <tr> <!--1列目-->
+    <% column = %w{div t_rank name t_time s_time s_rank r_time r_rank} %>
+    <% column.each do |col| %>
+    <th><%= t(".#{col}")%></th>
+    <% end %>
+  </tr>
+</thead>

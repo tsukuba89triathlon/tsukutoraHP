@@ -1,0 +1,47 @@
+<% @page_title = t('.title') %>
+<div class="contents">
+  <div class="heading">
+    <h1><%= @page_title %></h1>
+  </div>
+  <% if notice %><div id="notice"><%= notice %></div><% end %>
+  <table class="menu">
+    <caption><%= @member.full_name %></caption>
+    <tbody>
+      <tr>
+          <% if @member.status == 1 %>
+          <th><%= "#{t('activerecord.attributes.member.belong')}・#{t('activerecord.attributes.admin/member.grade')}" %></th>
+          <% else %>
+          <th>最終所属・学年</th>
+          <% end %>
+          <td><%= @member.belong %> <%= @member.grade_str %></td>
+      </tr>
+      <tr>
+          <th><%= t('activerecord.attributes.admin/member.full_name') %></th>
+          <td><%= @member.full_name %></td>
+      </tr>
+      <tr>
+          <th><%= t('activerecord.attributes.admin/member.yomigana') %></th>
+          <td><%= @member.yomigana %></td>
+      </tr>
+      <tr>
+          <th><%= t('activerecord.attributes.admin/member.user_name') %></th>
+          <td><%= @member.user_name %></td>
+      </tr>
+      <tr>
+          <th><%= t('activerecord.attributes.admin/member.status') %></th>
+          <td><%= t("general.member_status.#{@member.status_str}_member") %></td>
+      </tr>
+      <tr>
+        <th>権限</th>
+        <td>
+          <% if @member.administration %>管理者
+          <% if @member.lab_admin %>・Lab管理者<% end %>
+          <% elsif @member.lab_admin %>Lab管理者
+          <% end %>
+        </td>
+    </tbody>
+  </table>
+
+<%= link_to t('general.edit'), edit_admin_member_path(@member), class: 'btn btn-default' %>
+<%= link_to t('general.back'), admin_members_path, class: 'btn btn-default' %>
+</div>

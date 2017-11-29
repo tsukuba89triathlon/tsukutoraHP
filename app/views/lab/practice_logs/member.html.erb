@@ -1,0 +1,14 @@
+<% @page_title = t('.title') %>
+</script>
+<div class="contents clearfix">
+  <div class="heading">
+    <h1><%= @page_title %></h1>
+  </div>
+  <% if notice %><div id="notice"><%= notice %></div><% end %>
+  <table class="calender">
+    <caption><%= Member.find(params[:member_id]).full_name %>さんの練習ログ</caption>
+    <%= calender(@date,@logs,1).html_safe %>
+  </table>
+  <%= link_to "ランキングTOPへ", rank_lab_practice_logs_path, class: 'btn btn-primary' %>
+  <%= link_to 'アカウントページに戻る', account_path, class: 'btn btn-default' %>
+</div>

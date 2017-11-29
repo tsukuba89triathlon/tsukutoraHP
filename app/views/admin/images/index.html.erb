@@ -1,0 +1,20 @@
+<% @page_title = t('.title') %>
+<div class="contents">
+  <div class="heading">
+    <h1><%= @page_title %></h1>
+  </div>
+  <% if notice %><div id="notice"><%= notice %></div><% end %>
+  <div class="boxes clearfix">
+    <% @images.each do |image| %>
+    <div class="image_box col-lg-3">
+      <%= image_tag "/#{image.full_path}", class: 'image_thumbnail' %>
+      <div class="desc">
+        <%= image.image_target.target_str %><br/>
+        <%= link_to t('general.edit'), edit_admin_image_path(image), class:'btn btn-default' %>
+        <%= link_to t('general.delete'), admin_image_path(image), method: :delete, data: { confirm: "#{t('general.delete_confirm')}"}, class:'btn btn-default' %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+  <%= link_to "#{t('general.new',{model: "#{t('activerecord.models.admin/image')}"})}", new_admin_image_path, class: 'btn btn-default' %>
+</div>

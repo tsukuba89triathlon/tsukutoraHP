@@ -1,0 +1,28 @@
+<% @page_title = t('.title') %>
+
+<div class="contents clearfix">
+  <div class="heading">
+    <h1><%= @page_title %></h1>
+  </div>
+  <% if notice %><div id="notice"><%= notice %></div><% end %>
+  <div class="caution">
+    リザルト等の関係があるので、OBOGや退部した部員についても削除はしないようにしてください。<br/>
+    削除機能は、誤って同じ部員のデータを2つ以上作ってしまった場合などのみに使用してください。
+  </div>
+  <div class="col-lg-4">
+    <%= link_to t('general.member_status.active_member'), admin_members_path, class: 'col-lg-11 btn btn-default' %>
+  </div>
+  <div class="col-lg-4">
+    <%= link_to t('general.member_status.obog_member'), obog_admin_members_path, class: 'col-lg-11 btn btn-default' %>
+  </div>
+  <div class="col-lg-4">
+    <%= link_to t('general.member_status.left_member'), left_admin_members_path, class: 'col-lg-11 btn btn-default' %>
+  </div>
+  <% unless controller.action_name == 'index' %>
+  <%= render "#{controller.action_name}" %>
+  <% else %>
+  <%= render 'active' %>
+  <% end %>
+
+  <%= link_to "#{t('general.new',{model: t('activerecord.models.admin/member')})}", new_admin_member_path, class: 'btn btn-default' %>
+</div>

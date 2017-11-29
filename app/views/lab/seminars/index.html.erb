@@ -1,0 +1,67 @@
+<% @page_title = t('.title') %>
+<% boolean = session[:member_id] && Member.find(session[:member_id]).lab_admin %>
+<div class="contents clearfix">
+  <article class="article">
+    <div class="heading">
+      <h1><%= @page_title %></h1>
+    </div>
+    <div class="seminar_topic">
+      <h2>体力学</h2>
+      <% @lab_seminars.each do |seminar| %>
+        <%= content_tag :div, { class: :seminar, id: seminar.id } do %>
+          <div>
+            <h3 class="theme"><%= seminar.title %>　「<%= seminar.theme %>」</h3>
+          </div>
+          <div class="desc clearfix">
+            <div class="content">
+              勉強会実施日：<%= time_tag seminar.date %>
+              <ul>
+                <% if seminar.point_1 != '' %>
+                <li><%= seminar.point_1 %></li>
+                <% end %>
+                <% if seminar.point_2 != '' %>
+                <li><%= seminar.point_2 %></li>
+                <% end %>
+                <% if seminar.point_3 != '' %>
+                <li><%= seminar.point_3 %></li>
+                <% end %>
+                <% if seminar.point_4 != '' %>
+                <li><%= seminar.point_4 %></li>
+                <% end %>
+                <% if seminar.point_5 != '' %>
+                <li><%= seminar.point_5 %></li>
+                <% end %>
+              </ul>
+            </div>
+            <% if session[:member_id] %>
+            <%= link_to "資料DL", seminar., class: 'document btn btn-default' %>
+            <% end %>
+          </div>
+          <% if boolean %>
+          <div class="options">
+            【管理者メニュー】
+            <%= link_to t('general.show'), seminar %> |
+            <%= link_to t('general.edit'), edit_lab_seminar_path(seminar) %> |
+            <%= link_to t('general.delete'), seminar, method: :delete, data: { confirm: t('general.delete_confirm') } %>
+          </div>
+          <% end %>
+        <% end %>
+      <% end %>
+      <% if boolean %>
+        <%= link_to "#{t('general.new',{model: t('activerecord.models.lab/seminar')})}", new_lab_seminar_path, class: 'btn btn-default' %>
+      <% end %>
+    </div>
+  </article>
+  <aside class="sidemenu">
+    <div class="heading">
+      <h2>最新の勉強会</h2>
+    </div>
+    <h3>体力学</h3>
+    <ul class="link">
+      <% @lab_seminars.order(date: :desc).limit(5).each do |seminar| %>
+        <%= content_tag :li do %>
+          <%= link_to truncate("#{seminar.title}：#{seminar.theme}", length: 18), url_for(anchor: seminar.id) %>
+        <% end %>
+      <% end %>
+    </ul>
+  </aside>

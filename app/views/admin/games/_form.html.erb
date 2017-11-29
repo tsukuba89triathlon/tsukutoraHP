@@ -1,0 +1,41 @@
+<%= form_with(model: game, local: true) do |form| %>
+  <% if game.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= t('activerecord.errors.prohibited',{count: game.errors.count, model: "#{t('activerecord.models.admin/game')}"}) %></h2>
+
+      <ul>
+      <% game.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <%= form.label :game %>
+    <%= form.text_field :game, id: :game_game, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= form.label :game_anchor %>
+    <%= form.select(:game_anchor, [['下記以外',0],['スプリング',1],['関カレ',2],['インカレ',3],['スプリント',4],['デュアスロン',5]], {}, id: :game_game_anchor, class: 'form-control')  %>
+  </div>
+  <div class="form-group">
+    <%= form.label :date %><br>
+    <%= form.date_select :date, {use_month_numbers: true, date_separator: " / ", start_year: 2005, end_year: Date.today.year}, id: :game_date, class: 'form-control date-select' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :game_type %>
+    <%= form.select :game_type,
+    [
+      ["#{t('activerecord.attributes.admin/game.triathlon')}",1],
+      ["#{t('activerecord.attributes.admin/game.duathlon')}",2],
+      ["#{t('activerecord.attributes.admin/game.3part-aquathlon')}",3],
+      ["#{t('activerecord.attributes.admin/game.2part-aquathlon')}",4]
+    ],
+    {include_blank: t('form.select')}, id: :game_game_type, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.submit class: 'btn btn-primary' %>
+  </div>
+<% end %>

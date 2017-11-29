@@ -1,0 +1,509 @@
+ja:
+  form:
+    select: 選択してください
+  date:
+    formats:
+      default: "%Y/%m/%d"
+      short: "%m/%d"
+      long: "%Y年%m月%d日(%a)"
+
+    day_names: [日曜日, 月曜日, 火曜日, 水曜日, 木曜日, 金曜日, 土曜日]
+    abbr_day_names: [日, 月, 火, 水, 木, 金, 土]
+
+    month_names: [~, 1月, 2月, 3月, 4月, 5月, 6月, 7月, 8月, 9月, 10月, 11月, 12月]
+    abbr_month_names: [~, 1月, 2月, 3月, 4月, 5月, 6月, 7月, 8月, 9月, 10月, 11月, 12月]
+
+    order:
+      - :year
+      - :month
+      - :day
+
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M:%S"
+      short: "%y/%m/%d %H:%M"
+      long: "%Y年%m月%d日(%a) %H時%M分%S秒 %Z"
+    am: "午前"
+    pm: "午後"
+
+  notice:
+    created: '該当%{model}は正常に登録されました。'
+    updated: '該当%{model}は正常に更新されました。'
+    deleted: '該当%{model}は正常に削除されました。'
+    delete_canceled: '該当%{model}は%{relation}と関連づけられているため、削除できません。'
+
+  dist:
+    ssprint: 'スーパースプリント　(0.4-10-2.5)'
+    short: 'ショート　　　　　　(1.5-40-10)'
+    sprint: 'スプリント　　　　　(0.75-20-10)'
+    middle: 'ミドル　　　　　　　(2.5-40-20)'
+    long: 'ロング　　　　　　　(4.0-120-30)'
+    iron: 'アイアンマン　　　　(3.8-180-42.195)'
+    iron_703: 'アイアンマン 70.3　   (1.9-90-21.1)'
+    calfman: 'カーフマン　(5.0-30-5.0)'
+    du_championship: '日本選手権　(5.0-20-2.5)'
+    aqua_WC: 'R:2.5km-S:1.0km-R:2.5km'
+    aqua_sprint: 'S:0.5km-R:5km'
+    aqua_normal: 'S:1.5km-R:10km'
+
+  general:
+    others: 'その他'
+    see_more: もっと見る
+    item: 項目
+    content: 内容
+    show: 閲覧
+    edit: 編集
+    back: 一覧へ戻る
+    new: '新規%{model}登録'
+    delete: 削除
+    delete_confirm: 本当に削除してよいですか？
+    year: 年度
+    team_name: 筑波大学体育会トライアスロン部
+    contact: お問い合わせ
+    grade:
+      b1: 1年生
+      b2: 2年生
+      b3: 3年生
+      b4: 4年生
+      m1: 修士1年
+      m2: 修士2年
+      d1: 博士1年
+      d2: 博士2年
+      d3: 博士3年
+      master: 院生
+      obog: OBOG
+    member_status:
+      active_member: 現役
+      left_member: 途中退部
+      obog_member: OBOG
+  nav_menu:
+    home: ホーム
+    about: 部紹介
+    members: 部員紹介
+    results: 試合結果
+    garalley: ギャラリー
+    sns: SNS
+    link: リンク
+    for_members: 部員の方へ
+    admin_home: 管理者TOP
+    admin_members: 部員情報
+    admin_games: 大会情報
+    admin_divisons: 部門情報
+    admin_results: リザルト
+    admin_topics: TOPIC
+    admin_released_infos: 更新情報
+    admin_images: 画像
+  will_paginate:
+    previous_label: "<<前"
+    next_label: "次>>"
+    link_separator: ' | '
+
+  top:
+    index:
+      title: TOPページ
+    about:
+      title: 部紹介
+      triathlon: トライアスロンとは？
+      about_us: つくトラとは？
+    gallarey:
+      title: ギャラリー
+    link:
+      title: リンク
+      university: 大学関連
+      triathlon: トライアスロン関連
+      other_teams: 他大学トライアスロン部
+      sns: SNS
+  topics:
+    index:
+      title: TOPIC一覧
+      monthly: 月別TOPIC
+    show:
+      title: 'TOPIC 『%{title}』'
+      body: 本文
+      result: リザルト
+      in_preparation: 準備中です…
+  released_infos:
+    index:
+      title: 更新情報一覧
+  members:
+    index:
+      title: 部員紹介
+    active:
+      enter: '%{year}年度入学!'
+    show:
+      title: 部員情報詳細
+    edit:
+      title: 部員情報編集
+  results:
+    spring: スプリング
+    kankare: 関カレ
+    inkare: インカレ
+    sprint: スプリント
+    duathlon: デュアスロン学生選手権
+    index:
+      title: 大会リザルト
+      year: '%{year}年度'
+      see_archives: それ以前はこちら
+    show:
+      title: リザルト詳細
+    year:
+      title: '%{year}年度リザルト'
+    archives:
+      title: リザルト一覧
+      results_year: 年度別リザルト
+      results_game: 大会別リザルト
+      result: リザルト
+  images:
+    index:
+      title: プロフィール画像一覧
+    new:
+      title: プロフィール画像登録
+    edit:
+      title: プロフィール画像情報編集
+  accounts:
+    show:
+      title: アカウントページ
+      welcome: 'ようこそ！%{member}さん！'
+  lab:
+    practice_logs:
+      index:
+        title: 練習ログ一覧
+      rank:
+        title: 練習ログランキング
+      monthly_rank:
+        title: 練習ログ月別ランキング
+      annual_rank:
+        title: 練習ログ年度別ランキング
+      edit:
+        title: 練習ログ編集
+      new:
+        title: 練習ログ登録
+    seminars:
+      index:
+        title: 勉強会
+    top:
+      index:
+        title: Lab管理メニュー
+        new: 新規登録
+        edit: 編集
+        new_exp: '新規に%{model}を登録します'
+        edit_exp: '既存の%{model}を編集・削除します'
+        new_link: '新規%{model}登録'
+        edit_link: '%{model}編集'
+        top: TOPページに戻る
+        account: アカウントページに戻る
+  admin:
+    top:
+      index:
+        title: 管理者メニュー
+        new: 新規登録
+        edit: 編集
+        new_exp: '新規に%{model}を登録します'
+        edit_exp: '既存の%{model}を編集・削除します'
+        new_link: '新規%{model}登録'
+        edit_link: '%{model}編集'
+        top: TOPページに戻る
+        account: アカウントページに戻る
+    members:
+      index:
+        title: 部員一覧
+      show:
+        title: 部員情報詳細
+      new:
+        title: 部員情報登録
+      edit:
+        title: 部員情報編集
+    games:
+      index:
+        title: 大会一覧
+      show:
+        title: 大会情報詳細
+      new:
+        title: 大会情報登録
+      edit:
+        title: 大会情報編集
+    divisions:
+      index:
+        title: 部門一覧
+      show:
+        title: 部門情報詳細
+      new:
+        title: 部門情報登録
+      edit:
+        title: 部門情報編集
+    results:
+      index:
+        title: リザルト一覧
+      show:
+        title: リザルト詳細
+      new:
+        title: リザルト登録
+      edit:
+        title: リザルト編集
+      form:
+        finish: 完走
+        dns: DNS
+        dnf: DNF
+        dsq: DSQ
+        skip: SKIP
+        time_over: TIME OVER
+    topics:
+      index:
+        title: TOPIC一覧
+      show:
+        body: 本文
+        result: リザルト
+        in_preparation: 準備中です…
+      new:
+        title: TOPIC登録
+      edit:
+        title: TOPIC編集
+    released_infos:
+      index:
+        title: 更新情報一覧
+      show:
+        title: 更新情報詳細
+      new:
+        title: 更新情報登録
+      edit:
+        title: 更新情報編集
+    images:
+      index:
+        title: 画像一覧
+      new:
+        title: 画像登録
+      edit:
+        title: 画像情報編集
+      show:
+        title: 画像詳細
+    image_targets:
+      index:
+        title: 画像表示先一覧
+      new:
+        title: 画像表示先登録
+      show:
+        title: 画像表示先詳細
+      edit:
+        title: 画像表示先編集
+    schools:
+      index:
+        title: 学群/研究科一覧
+      new:
+        title: 学群/研究科情報登録
+      show:
+        title: 学群/研究科情報詳細
+      edit:
+        title: 学群/研究科情報編集
+    colleges:
+      index:
+        title: 学類/専攻一覧
+      new:
+        title: 学類/専攻情報登録
+      show:
+        title: 学類/専攻情報詳細
+      edit:
+        title: 学類/専攻情報編集
+  shared:
+    result:
+      body_3part:
+        finisher: '完走%{num}名'
+        team_rank: '団体%{rank}/%{num}位'
+      body_2part:
+        finisher: '完走%{num}名'
+        team_rank: '団体%{rank}/%{num}位'
+      limited:
+        body_3part:
+          finisher: '完走%{num}名'
+          team_rank: '団体%{rank}/%{num}位'
+        body_2part:
+          finisher: '完走%{num}名'
+          team_rank: '団体%{rank}/%{num}位'
+      triathlon_thead:
+        div: 部門
+        t_rank: 総合順位
+        name: 氏名
+        t_time: 総合タイム
+        s_time: Swim Lap
+        s_rank: S順
+        b_time: Bike Lap
+        b_rank: B順
+        split: Split
+        split_rank: 通過順
+        r_time: Run Lap
+        r_rank: R順
+      duathlon_thead:
+        div: 部門
+        t_rank: 総合順位
+        name: 氏名
+        t_time: 総合タイム
+        1r_time: 1stRun Lap
+        1r_rank: 1R順
+        b_time: Bike Lap
+        b_rank: B順
+        split: Split
+        split_rank: 通過順
+        2r_time: 2ndRun Lap
+        2r_rank: 2R順
+      2part-aquathlon_thead:
+        div: 部門
+        t_rank: 総合順位
+        name: 氏名
+        t_time: 総合タイム
+        s_time: Swim Lap
+        s_rank: S順
+        r_time: Run Lap
+        r_rank: R順
+      3part-aquathlon_thead:
+        div: 部門
+        t_rank: 総合順位
+        name: 氏名
+        t_time: 総合タイム
+        1r_time: 1stRun Lap
+        1r_rank: 1R順
+        s_time: Swim Lap
+        s_rank: S順
+        2r_time: 2ndRun Lap
+        2r_rank: 2R順
+
+  activerecord:
+    models:
+      admin/game: 大会情報
+      admin/division: 部門情報
+      admin/result: リザルト
+      admin/member: 部員情報
+      admin/topic: TOPIC
+      admin/released_info: 更新情報
+      admin/image: 画像
+      admin/image_target: 画像保存先
+      admin/school: 学群/研究科
+      admin/college: 学類/専攻
+      lab/practice_log: 練習ログ
+      lab/seminar: 勉強会情報
+      lab/data: データ
+      member: プロフィール
+      image: プロフィール画像
+    attributes:
+      admin/game:
+        game: 大会名
+        year: 年度
+        game_anchor: 大会タグ
+        date: 開催日
+        game_type: 競技タイプ
+        triathlon: トライアスロン
+        duathlon: デュアスロン
+        3part-aquathlon: アクアスロン(R-S-R)
+        2part-aquathlon: アクアスロン(S-R)
+      admin/division:
+        game: 大会名
+        game_id: 大会名
+        div: 部門名
+        distance: 規格
+        finisher: 完走者数
+        team_rank: 団体順位
+        num_of_team: 完走チーム数
+      admin/result:
+        date: 日付
+        game_id: 大会名
+        game: 大会名
+        division_id: 部門名
+        division: 部門名
+        total_rank: 総合順位
+        member_id: 氏名
+        full_name: 氏名
+        state: 状態
+        total_time: 総合タイム
+        total_check: 総合記録無し
+        s_check: Swim記録無し
+        s_time: Swimタイム
+        s_rank: Swim順位
+        b_check: Bike記録無し
+        b_time: Bikeタイム
+        b_rank: Bike順位
+        split_check: Split記録無し
+        split: Splitタイム
+        split_rank: Split順位
+        r_check: Run記録無し
+        r_time: Runタイム
+        r_rank: Run順位
+        remarks: メモ
+        du_1st_run_time: 1stRunタイム
+        du_1st_run_rank: 1stRun順位
+      admin/member:
+        full_name: 氏名
+        user_name: ユーザー名
+        yomigana: ヨミガナ
+        status: 状態
+        grade: 学年
+        graduated_year: 卒業年度
+        remarks: 備考
+      admin/topic:
+        title: 題名
+        date: 日付
+        game_id: 大会名
+        game: 大会名
+        body: 本文
+        image: 関連画像
+      admin/released_info:
+        date: 日付
+        body: 本文
+      admin/image:
+        image: 画像
+        image_target: 画像保存先
+        image_target_id: 画像保存先
+        effective: 表示/非表示
+      admin/image_target:
+        target: 画像表示先
+        path: 保存パス
+      admin/school:
+        school: 学群/研究科名
+      admin/college:
+        school: 学群/研究科名
+        school_id: 学群/研究科名
+        college: 学類/専攻名
+        abbreviation: 略称
+      member:
+        user_name: ユーザー名
+        password: パスワード
+        password_confirmation: パスワードの確認
+        belong: 所属
+        hometown: 出身地
+        school: 出身校
+        sports: 出身競技
+        bike: 愛車
+        part: 得意パート
+        addiction: トライアスロンの魅力
+        goal: 目標
+        last: 最後に一言
+      lab/practice_log:
+        rank: 順位
+        name: 氏名
+        swim: Swim
+        bike: Bike
+        run: Run
+        conversion_distance: 換算走行距離
+        conv_dist: 換算走行距離
+        remark: メモ
+        date: 日付
+        public: 詳細公開しない
+      result:
+      account:
+      image:
+      image_target:
+      released_info:
+        date: 更新日
+        body: 更新内容
+        link: 更新ページ
+      topic:
+      college:
+      school:
+    errors:
+      prohibited: '%{count}個のエラーにより%{model}は保存できません。'
+      messages:
+        not_kana: はカタカナで入力してください。
+        too_big_image: が大きすぎます(最大10MB)。
+        invaild_image: の形式が違います(JPEG、GIF、PNGのいずれかにしてください)。
+        must_exist: を入力してください。
+  helpers:
+    submit:
+      create: 登録
+      update: 更新

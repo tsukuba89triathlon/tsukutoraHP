@@ -1,0 +1,46 @@
+<% @page_title = t('.title') %>
+<% attribute = ['activerecord','attributes','admin/division'] %>
+<div class="contents">
+  <div class="heading">
+    <h1><%= @page_title %></h1>
+  </div>
+  <% if notice %><div id="notice"><%= notice %></div><% end %>
+  <table>
+    <thead>
+      <tr>
+        <th><%= t('general.item') %></th>
+        <th><%= t('general.content') %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th><%= t :game, scope: attribute %></th>
+        <td><%= @division.game.game %></td>
+      </tr>
+      <tr>
+        <th><%= t :div, scope: attribute %></th>
+        <td><%= @division.div %></td>
+      </tr>
+      <tr>
+        <th><%= t :distance, scope: attribute %></th>
+        <td><%= @division.distance %></td>
+      </tr>
+      <tr>
+        <th><%= t :finisher, scope: attribute %></th>
+        <td><%= @division.finisher %></td>
+      </tr>
+      <tr>
+        <th><%= t :team_rank, scope: attribute %></th>
+        <td><%= @division.team_rank %></td>
+      </tr>
+      <tr>
+        <th><%= t :num_of_team, scope: attribute %></th>
+        <td><%= @division.num_of_team %></td>
+      </tr>
+    </tbody>
+  </table>
+
+<%= link_to t('general.edit'), edit_admin_division_path(@division), class: 'btn btn-default' %>
+<%= link_to t('general.back'), admin_divisions_path, class: 'btn btn-default' %>
+<%= link_to "#{t('general.new',{model: "#{t('activerecord.models.admin/result')}"})}", new_admin_result_path, class: 'btn btn-default' %>
+</div>

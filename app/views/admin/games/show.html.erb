@@ -1,0 +1,45 @@
+<% @page_title = t('.title') %>
+<div class="contents">
+  <div class="heading">
+    <h1><%= @page_title %></h1>
+  </div>
+  <% if notice %><div id="notice"><%= notice %></div><% end %>
+  <table>
+    <thead>
+      <tr>
+        <th><%= t('general.item') %></th>
+        <th><%= t('general.content') %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th><%= t('activerecord.attributes.admin/game.game') %></th>
+        <td><%= @game.game %></td>
+      </tr>
+      <tr>
+        <th><%= t('activerecord.attributes.admin/game.year') %></th>
+        <td><%= @game.year %></td>
+      </tr>
+      <tr>
+        <th><%= t('activerecord.attributes.admin/game.date') %></th>
+        <td><%= @game.date %></td>
+      </tr>
+
+      <tr>
+        <th><%= t('activerecord.attributes.admin/game.game_type') %></th>
+        <td>
+          <% case @game.game_type
+               when 1 %><%= t('activerecord.attributes.admin/game.triathlon') %>
+            <% when 2 %><%= t('activerecord.attributes.admin/game.duathlon') %>
+            <% when 3 %><%= t('activerecord.attributes.admin/game.3part-aquathlon') %>
+            <% when 4 %><%= t('activerecord.attributes.admin/game.2part-aquathlon') %>
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <%= link_to t('general.edit'), edit_admin_game_path(@game), class: 'btn btn-default' %>
+  <%= link_to t('general.back'), admin_games_path, class: 'btn btn-default' %>
+  <%= link_to t('general.new',{model: "#{t('activerecord.models.admin/division')}"}), new_admin_division_path, class: 'btn btn-default' %>
+</div>

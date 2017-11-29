@@ -1,0 +1,48 @@
+<%= form_with(model: lab_practice_log, local: true, id: :lab_practice_log) do |form| %>
+  <% if lab_practice_log.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= t('activerecord.errors.prohibited',{model: t('activerecord.models.lab/practice_log'), count: lab_practice_log.errors.count})%></h2>
+
+      <ul>
+      <% lab_practice_log.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% @lab_practice_log.member_id = session[:member_id] %>
+  <%= hidden_field :lab_practice_log, :member_id %>
+  <div class="form-group">
+    <%= form.label :date %><br/>
+    <%= form.date_select :date,
+    {use_month_numbers: true}, {id: :lab_practice_log_date, class: 'form-control date-select'} %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :swim %>
+    <%= form.text_field :swim, id: :lab_practice_log_swim, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :bike %>
+    <%= form.text_field :bike, id: :lab_practice_log_bike, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :run %>
+    <%= form.text_field :run, id: :lab_practice_log_run, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :remark %>
+    <%= form.text_area :remark, id: :lab_practice_log_remark, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :public %>
+    <%= form.check_box :public, id: :lab_practice_log_public, class: 'form-control' %>
+  </div>
+
+  <%= form.submit data: { disabled_with: '処理中…' }, class: 'btn btn-primary' %>
+<% end %>

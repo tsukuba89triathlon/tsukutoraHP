@@ -1,0 +1,60 @@
+<% @page_title = "SNS" %>
+<div class="contents clearfix">
+  <div class="article">
+    <div class="heading">
+      <h1>SNS</h1>
+    </div>
+      <h2 class="subheading">部ログ</h2>
+      <%= link_to "http://tsukuba-triathlon.blogspot.jp/", class: "box clearfix" do %>
+        <%= image_tag "blog.png", alt: '関係写真', class: :blog %>
+        <div class="topic"> <!--中身-->
+          <h3 class="title"></h3>
+          <p class="comment">
+            部の公式ブログです。<br>
+            部員が各自更新しており、レースレポートや練習・イベントの振り返りをはじめ、
+            新学期には他己紹介リレーなどが行われます。
+          </p>
+        </div>
+      <% end %>
+      <h2 class="subheading">Twitter</h2>
+      <%= link_to "https://twitter.com/tsukutora", class: "box clearfix" do %>
+        <%= image_tag "twitter.png", alt: '関係写真', class: :twitter %>
+        <div class="topic"> <!--中身-->
+          <h3 class="title"></h3>
+          <p class="comment">
+            部の公式Twitterです。<br>
+            遠征や練習の様子をタイムリーにお伝えします。
+          </p>
+        </div>
+      <% end %>
+      <h2 class="subheading">Facebook</h2>
+      <%= link_to "https://www.facebook.com/tsukutora", class: "box clearfix" do %>
+        <%= image_tag "facebook.png", alt: '関係写真', class: :facebook %>
+        <div class="topic"> <!--中身-->
+          <h3 class="title"></h3>
+          <p class="comment">
+            部の公式Facebookです。<br>
+            大会やイベントの振り返り、きっちりとした報告をさせていただいています。
+          </p>
+        </div>
+      <% end %>
+  </div>
+  <div class="sidemenu"> <!--右側のバー。SNS-->
+    <div class="heading">
+      <h2> <!--タイトル-->
+        メニュー
+      </h2>
+    </div>
+    <h3><a href="#photo">SNS</a></h3>
+    <ul class="link">
+      <li>
+        <%= link_to "ブログ", "http://tsukuba-triathlon.blogspot.jp/" %>
+      </li>
+      <li>
+        <%= link_to "Twitter", "https://twitter.com/tsukutora" %>
+      </li>
+      <li>
+        <%= link_to "facebook", "https://www.facebook.com/tsukutora" %>
+      </li>
+  </div>
+</div>

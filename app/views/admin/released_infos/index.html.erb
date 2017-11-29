@@ -1,0 +1,30 @@
+<% @page_title = t('.title') %>
+<div class="contents">
+  <div class="heading">
+    <h1><%= @page_title %></h1>
+  </div>
+  <% if notice %><div id="notice"><%= notice %></div><% end %>
+  <table>
+    <thead>
+      <tr>
+        <th><%= t('activerecord.attributes.admin/released_info.date')%></th>
+        <th><%= t('activerecord.attributes.admin/released_info.body')%></th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @released_infos.each do |released_info| %>
+        <tr>
+          <td><%= released_info.date %></td>
+          <td><%= released_info.body %></td>
+          <td><%= link_to t('general.show'), released_info %></td>
+          <td><%= link_to t('general.edit'), edit_admin_released_info_path(released_info) %></td>
+          <td><%= link_to t('general.delete'), admin_released_info_path(released_info), method: :delete, data: { confirm: t('general.delete_confirm') } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= will_paginate @released_info, previous_label: '<前', next_label: '後>', link_separator: ' | ' %>
+  <%= link_to '更新情報作成', new_admin_released_info_path, class: 'btn btn-default' %>
+</div>

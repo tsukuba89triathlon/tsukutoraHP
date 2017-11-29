@@ -1,0 +1,155 @@
+<script>
+$(document).on('turbolinks:load', function() {
+  var year_select = $('[data-role="year_select"]');
+  var url = '/admin/result/ajax';
+  year_select.change(function(){
+    $.get(url, {
+      year: year_select.has('option:selected').val()
+    });
+  });
+});
+$(document).on('turbolinks:load', function(){
+  var game_select = $('[data-role="game_select"]');
+  var url = '/admin/result/ajax';
+  game_select.change(function(){
+    $.get(url, {game_id: game_select.has('option:selected').val()});
+  });
+});
+$(document).on('turbolinks:load', function(){
+  var state_select = $('[data-role="state_select"]');
+  var url = '/admin/result/ajax';
+  state_select.change(function(){
+    $.get(url, {state: state_select.has('option:selected').val()});
+  });
+});
+</script>
+<div class="test">ららら</div>
+<%= form_with(model: result, local: true ) do |form| %>
+  <%
+  if result == nil
+    year = nil
+    state = nil
+    type = 1
+  else
+    if result.game == nil
+      year = nil
+    else
+      year = result.game.year
+    end
+    if result.state == nil
+      state = nil
+    else
+      state = result.state
+    end
+  end
+  %>
+  <% if result && result.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= t('activerecord.errors.prohibited',{model: "#{t('activerecord.models.admin/result')}", count: result.errors.count}) %></h2>
+      <ul>
+      <% result.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="col-lg-12 form-group">
+    <label for="year"><%= t('general.year') %></label>
+    <%= select_tag 'year', options_from_collection_for_select(Admin::Game.select(:year).distinct, :year, :year, year), include_blank: t('form.select'), class: 'form-control', 'data-role' => 'year_select' %>
+  </div>
+  <div class="col-lg-12 form-group">
+    <%= form.label :game_id %>
+    <%= form.collection_select :game_id, @games, :id, :game, {include_blank: t('form.select')}, {id: :result_game_id, class: 'form-control', "data-role" => "game_select"} %>
+  </div>
+  <div class="col-lg-12 form-group">
+    <%= form.label :division_id %>
+    <%= form.collection_select :division_id, @divisions, :id, :div, {include_blank: t('form.select')}, {id: "result_division", class: 'form-control', 'data-role' => "division_select" } %>
+  </div>
+  <div class="col-lg-12 form-group">
+    <%= form.label :state %>
+    <%= form.select :state, options_for_select({"#{t('.finish')}" => 0, "#{t('.dsq')}" => 1, "#{t('.time_over')}" => 2, "#{t('.dnf')}" => 3, "#{t('.skip')}" => 4, "#{t('.dns')}" => 5},state), {}, id: :result_state, class: 'form-control', 'data-role' => 'state_select' %>
+  </div>
+  <div class="col-lg-12 form-group">
+    <%= form.label :member_id %>
+    <%= form.collection_select :member_id, Member.active, :id, :full_name, {}, {id: :result_member_id, class: 'form-control'} %>
+  </div>
+  <div class="col-lg-12 form-group total">
+    <div class="col-lg-2 check">
+      <%= form.label :total_check, "#{result.game.attribute_names[0]}記録なし" %><br>
+      <%= form.check_box :total_check, {id: :result_total_check, class: 'check_box-big'} %>
+    </div>
+    <div class="col-lg-4 time">
+      <%= form.label :total_time, "#{result.game.attribute_names[0]}タイム" %><br>
+      <%= form.time_select :total_time, {include_seconds: true, default: Time.now.change(year: 1900, month: 1, day: 1, hour: 2, min: 10, sec: 0)}, {id: :result_total_time, class: 'form-control date-select'}%>
+    </div>
+    <div class="col-lg-6 rank">
+      <%= form.label :total_rank, "#{result.game.attribute_names[0]}順位" %>
+      <%= form.number_field :total_rank, id: :result_total_rank, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="col-lg-12 form-group swim">
+    <div class="col-lg-2 check">
+      <%= form.label :s_check, "#{result.game.attribute_names[1]}記録なし" %><br>
+      <%= form.check_box :s_check, {id: :result_s_check, class: 'check_box-big'} %>
+    </div>
+    <div class="col-lg-4 time">
+      <%= form.label :s_time, "#{result.game.attribute_names[1]}タイム" %><br>
+      <%= form.time_select :s_time, {include_seconds: true, default: Time.now.change(year: 1900, month: 1, day: 1, hour: 0, min: 25, sec: 0)}, {id: :result_s_time, class: 'form-control date-select'} %>
+    </div>
+    <div class="col-lg-6 rank">
+      <%= form.label :s_rank, "#{result.game.attribute_names[1]}順位" %>
+      <%= form.number_field :s_rank, id: :result_s_rank, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="col-lg-12 form-group bike">
+    <div class="col-lg-2 check">
+      <%= form.label :b_check, "#{result.game.attribute_names[2]}記録なし" %><br>
+      <%= form.check_box :b_check, {id: :result_b_check, class: 'check_box-big'} %>
+    </div>
+    <div class="col-lg-4 time">
+      <%= form.label :b_time, "#{result.game.attribute_names[2]}タイム" %><br>
+      <%= form.time_select :b_time, {include_seconds: true, default: Time.now.change(year: 1900, month: 1, day: 1, hour: 1, min: 5, sec: 0)}, {id: :result_b_time, class: 'form-control date-select'} %>
+    </div>
+    <div class="col-lg-6 rank">
+      <%= form.label :b_rank, "#{result.game.attribute_names[2]}順位" %>
+      <%= form.number_field :b_rank, id: :result_b_rank, class: 'form-control' %>
+    </div>
+  </div>
+  <% if type != 4 %>
+  <div class="col-lg-12 form-group split">
+    <div class="col-lg-2 check">
+      <%= form.label :split_check, "#{result.game.attribute_names[3]}記録なし" %><br>
+      <%= form.check_box :split_check, {id: :result_split_check, class: 'check_box-big'} %>
+    </div>
+    <div class="col-lg-4 time">
+      <%= form.label :split, "#{result.game.attribute_names[3]}タイム" %><br>
+      <%= form.time_select :split, {include_seconds: true, default: Time.now.change(year: 1900, month: 1, day: 1, hour: 1, min: 30, sec: 0)}, {id: :result_split, class: 'form-control date-select'} %>
+    </div>
+    <div class="col-lg-6 rank">
+      <%= form.label :split_rank, "#{result.game.attribute_names[3]}順位" %>
+      <%= form.number_field :split_rank, id: :result_split_rank, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="col-lg-12 form-group run">
+    <div class="col-lg-2 check">
+      <%= form.label :r_check, "#{result.game.attribute_names[4]}記録なし" %><br>
+      <%= form.check_box :r_check, {id: :result_r_check, class: 'check_box-big'} %>
+    </div>
+    <div class="col-lg-4 time">
+      <%= form.label :r_time, "#{result.game.attribute_names[4]}タイム" %><br>
+      <%= form.time_select :r_time, {include_seconds: true, default: Time.now.change(year: 1900, month: 1, day: 1, hour: 0, min: 40, sec: 0)}, {id: :result_r_time, class: 'form-control date-select'} %>
+    </div>
+    <div class="col-lg-6 rank">
+      <%= form.label :r_rank, "#{result.game.attribute_names[4]}順位" %>
+      <%= form.number_field :r_rank, id: :result_r_rank, class: 'form-control' %>
+    </div>
+  </div>
+  <% end %>
+  <div class="col-lg-12 form-group">
+    <%= form.label :remarks %>
+    <%= form.text_field :remarks, id: :result_remarks, class: 'form-control' %>
+  </div>
+  <div class="actions">
+    <%= form.submit class: 'btn btn-primary' %>
+  </div>
+<% end %>

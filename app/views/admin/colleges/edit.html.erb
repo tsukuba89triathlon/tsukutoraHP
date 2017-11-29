@@ -1,0 +1,11 @@
+<% @page_title =t('.title') %>
+<div class="contents clearfix">
+  <div class="heading">
+    <h1><%= @page_title %></h1>
+  </div>
+
+  <%= render 'form', college: @college %>
+
+  <%= link_to t('general.show'), @college, class: 'btn btn-default' %>
+  <%= link_to t('general.back'), admin_colleges_path, class: 'btn btn-default' %>
+</div>

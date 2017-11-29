@@ -1,0 +1,9 @@
+<% @page_title = t('.title') %>
+<div class="contents">
+  <div class="heading">
+    <h1><%= @page_title %></h1>
+  </div>
+  <%= render 'form', image_target: @image_target %>
+  <%= link_to t('general.show'), @image_target, class: 'btn btn-default' %>
+  <%= link_to t('general.back'), admin_image_targets_path, class: 'btn btn-default' %>
+</div>

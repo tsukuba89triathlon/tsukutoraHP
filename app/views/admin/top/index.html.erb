@@ -1,0 +1,34 @@
+<% @page_title = t('.title') %>
+<% models = ['activerecord.models'] %>
+<div class="contents clearfix">
+  <div class="heading">
+    <h1><%= @page_title %></h1>
+  </div>
+  <table class="menu">
+    <thead>
+      <tr>
+        <th colspan="2"></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <% model_names = ['member','game','division','result','topic','released_info','image','image_target','school','college'] %>
+    <tbody>
+      <% model_names.each do |model| %>
+      <tr>
+        <th rowspan="2"><%= t "admin/#{model}", scope: models %></th>
+        <th><%= t('.new') %></th>
+        <td><%= t('.new_exp',{model: "#{t "admin/#{model}", scope: models}"})%></td>
+        <td><%= link_to t('.new_link',{model: "#{t "admin/#{model}", scope: models}"}), "admin/#{model}s/new" %></td>
+      </tr>
+      <tr>
+        <th><%= t('.edit') %></th>
+        <td><%= t('.edit_exp',{model: "#{t "admin/#{model}", scope: models}"})%></td>
+        <td><%= link_to t('.edit_link',{model: "#{t "admin/#{model}", scope: models}"}), "admin/#{model}s" %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= link_to t('.top'), root_path, class: 'btn btn-default' %>
+  <%= link_to t('.account'), account_path, class: 'btn btn-default' %>
+</div>

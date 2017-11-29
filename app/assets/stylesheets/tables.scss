@@ -1,0 +1,202 @@
+/*
+  *= require_self
+  *= require_tree
+*/
+
+/*汎用色の定義*/
+$skyblue: #1097FF;
+$yellow: #FFBF00;
+$orange: #FF9200;
+$blue: #2525ff;
+$purple: #A176CC;
+$table_body: #326E87; //tdの文字色
+$table_index: #1C5D79; //
+$border_color: #1C5D79; //罫線の色
+$header_bg: rgb(240, 240, 240); //見出し行の背景
+$header_text: #FF8C00; //見出し行の文字色
+$body_bg: #dfedf3; //データ行の背景
+/*テーブル関連一括設定*/
+table{
+  width: 100%;
+  padding: 3px 10px;
+  font-size: 1.2rem;
+  color: $table_body;
+  border-collapse: collapse;
+  border: 2px solid #111;
+  margin: 10px 0;
+  text-align: center;
+  thead{
+    tr{
+      height: 32px;
+      th{
+        background-color: $header_bg;
+        background-repeat: repeat-x;
+        border-collapse: collapse;
+        border-left: 1px solid $border_color;
+        border-right: 1px solid $border_color;
+        border-bottom: 3px double #111;
+        color: $header_text;
+        height: 32px;
+        line-height: 32px;
+        text-align: center;
+      }
+      td{
+        border: 1px solid #111;
+        color: $header_text;
+        background-color: $header_bg;
+        border-bottom: 3px double #111;
+      }
+    }
+  }
+  tbody{
+    tr{
+      background-color: $body_bg;
+      border: 1px solid #111;
+      th{
+        text-align: center;
+      }
+      td{
+        border: 1px solid #111;
+      }
+    }
+  }
+  caption{
+    text-align: left;
+    font-size: 1.6rem;
+    border-bottom: 2px dashed #111;
+    margin-bottom: 15px;
+    padding-left: 10px;
+  }
+}
+.menu{
+  tr{
+    height: 30px;
+    font-size: 1.6rem
+  }
+}
+.profile{
+  .member{
+    caption{
+      padding: 0;
+      margin: 0 0 10px 10px;
+      border: none;
+      color: $table_body;
+    }
+    th{
+      width: 35%;
+      background-color: $table_index;
+      color: white;
+    }
+  }
+}
+#record{
+  tbody{
+    td{
+      text-align: left;
+      padding-left: 5px;
+    }
+  }
+}
+#schedule{
+  thead{
+    th{
+      width: 12.5%;
+    }
+  }
+}
+.document{
+  border: 2px solid #111;
+  margin: 25px 5px;
+  width: 100%;
+  .title{
+    text-align: left;
+    font-size: 1.6rem;
+    border-bottom: 2px dashed #111;
+    margin-bottom: 15px;
+    padding-left: 10px;
+  }
+  thead{
+    tr{
+      th{
+        font-size: 1.6rem;
+      }
+    }
+  }
+  tbody{
+    tr{
+      height: 27px;
+      th{
+        background-color: $table_index;
+        color: #fff;
+      }
+      td{
+        padding: 3px;
+        border-left: 1px solid #1C5D79;
+        border-right: 1px solid #1C5D79;
+        font-size: 1.4rem;
+      }
+    }
+  }
+}
+.result_archives{
+  thead{
+    th{
+      line-height: 20px;
+    }
+  }
+}
+.calender{
+  thead{
+    tr{
+      font-size: 1.6rem;
+      th{
+        color: black;
+      }
+      .sat{
+        color: blue;
+      }
+      .sun{
+        color: red;
+      }
+    }
+  }
+  tbody{
+    tr{
+      td{
+        width: 14.2%;
+        height: 100px;
+        padding: none;
+        vertical-align: top;
+        .date{
+          padding: 5px 8px 0 0;
+          font-size: 1.5rem;
+          display: block;
+          text-align: right;
+        }
+        .log_link{
+          display: block;
+          div{
+            height: 100%;
+            width: 50%;
+            vertical-align: middle;
+          }
+          .log{
+            float: left;
+            text-align: left;
+            padding: 10px 0 0 10px;
+          }
+          .details{
+            float: right;
+            padding: 20px 0;
+          }
+        }
+      }
+      .sat{
+        color: blue;
+      }
+      .sun{
+        color: red;
+      }
+    }
+  }
+}

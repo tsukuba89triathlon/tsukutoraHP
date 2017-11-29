@@ -1,0 +1,33 @@
+<% @page_title = t('.title') %>
+<div class="contents">
+  <div class="heading">
+    <h1><%= @page_title %></h1>
+  </div>
+  <% if notice %><div id="notice"><%= notice %></div><% end %>
+  <table>
+    <thead>
+      <tr>
+        <th><%= t('activerecord.attributes.admin/image_target.target') %></th>
+        <th><%= t('activerecord.attributes.admin/image_target.path') %></th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @image_targets.each do |image_target| %>
+        <tr>
+          <td><%= image_target.target_str %></td>
+          <td><%= image_target.path %></td>
+          <td><%= link_to t('general.show'), image_target %></td>
+          <td><%= link_to t('general.edit'), edit_admin_image_target_path(image_target) %></td>
+          <td><%= link_to t('general.delete'), image_target, method: :delete, data: { confirm: t('general.delete_confirm') } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <% if controller.action_name == 'index_all' %>
+  <%= link_to "最近の対象のみ見る", admin_image_targets_path, class: 'btn btn-default' %>
+  <% else %>
+  <%= link_to "すべて見る", "image_targets/index_all", class: 'btn btn-default' %>
+  <% end %>
+  <%= link_to "#{t('general.new',{model: "#{t('activerecord.models.admin/image_target')}"})}", new_admin_image_target_path, class: 'btn btn-default' %>
+</div>

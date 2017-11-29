@@ -1,0 +1,11 @@
+<% @page_title = "パスワード編集" %>
+<div class="contents">
+  <div class="heading">
+    <h1><%= @page_title %></h1>
+  </div>
+
+  <%= render 'password_form', member: @member %>
+
+  <%= link_to '現在のプロフィール', @member, class: 'btn btn-default' %>
+  <%= link_to 'アカウントページへ', account_path, class: 'btn btn-default' %>
+</div>

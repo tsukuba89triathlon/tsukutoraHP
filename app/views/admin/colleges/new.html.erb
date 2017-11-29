@@ -1,0 +1,11 @@
+<% @page_title = '新規学類作成' %>
+<div class="contents">
+  <div class="heading">
+    <h1><%= @page_title %></h1>
+  </div>
+
+  <%= render 'form', college: @college %>
+
+  <%= link_to '学類一覧', admin_colleges_path, class: 'btn btn-default' %>
+
+</div>

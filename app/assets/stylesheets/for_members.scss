@@ -1,0 +1,124 @@
+// Place all the styles related to the divisions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+/*
+  *= require_self
+*/
+.contents{
+  .box-wrapper{
+    height: 100px;
+  }
+  .active{
+    background: #1097FF;
+    border: 1px solid #1097FF;
+  }
+  .active .desc, .ob .desc{
+      font-size: 1.6rem;
+      padding: 20px 30px;
+  }
+  .ob{
+    background: #6600CC;
+    border: 1px solid #6600CC;
+    color: #111;
+  }
+  table, tr, th, td {
+    padding: 3px 10px;
+    font-size: 1.2rem;
+    color: #326e87;
+    border-collapse: collapse;
+  }
+  .table_box{
+    display: block;
+    :hover{
+      background-color: #FFCD89;
+    }
+  }
+  .user_info{
+      padding: 10px 30px;
+      text-align: left;
+  }
+  .list input{
+      margin: 0px;
+  }
+  .img_upload{
+      margin: auto;
+      width: 75%;
+  }
+  .img_upload ul{
+      list-style: none;
+  }
+  .img_input{
+      width: 30%;
+      display: block;
+      float: left;
+      cursor: pointer;
+      padding: 10px 5px;
+      margin: 10px 5px;
+      border: 1px solid;
+  }
+  .img_input input{
+      display: none;
+  }
+  .seminar{
+      background-color: #1097FF;
+      width: 23.5%;
+  }
+  .seminar:hover{
+      opacity: 1;
+  }
+  .seminar .sub-heading{
+      height: 20%;
+      padding-top: 15px;
+      box-sizing: border-box;
+  }
+  .seminar .sub-heading h4{
+      margin-top: 0;
+  }
+  .seminar .detail{
+      height: 80%;
+  }
+  .seminar li{
+      text-align: left;
+      padding-left: 10px;
+  }
+  .seminar .theme{
+      height: 25%;
+  }
+  .seminar .list{
+      height: 55%;
+  }
+  .seminar .doc{
+      height: 20%;
+  }
+  h3{
+      font-size: 1.8rem;
+  }
+}
+@media (max-width: 480px), (max-device-width: 480px){
+    .contents{
+        padding-top: 20px;
+    }
+    .box{
+        margin: 20px 5px;
+        width: 100%;
+        float: none;
+        height: auto;
+    }
+    .box .desc{
+        display: block;
+        width: 50%;
+        margin-left: 20px;
+    }
+    .seminar{
+        font-size: 1.8rem
+    }
+    .seminar ul{
+        padding-left: 100px;
+    }
+    .seminar h4{
+        padding-top: 30px;
+    }
+    .detail{
+    padding-bottom: 20px;
+  }
+}

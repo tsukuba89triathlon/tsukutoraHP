@@ -1,0 +1,49 @@
+<% @page_title = t('.title') %>
+<% anchor_type = %w{spring kankare inkare sprint duathlon} %>
+<div class="contents clearfix">
+  <div class="article">
+    <div class="heading">
+      <h1><%= @page_title %></h1>
+    </div>
+    <div class="boxes"> <!--中身-->
+      <% 0.upto(3) do |idx|; year = Date.today.months_ago(3).year - idx %>
+        <%= link_to "results/year/#{year}", id: year, class: "box clearfix" do %>
+          <% if @image_targets[idx] %>
+          <% image = @image_targets[idx].images.first %>
+          <% end %>
+          <% if image && File.exist?("public/#{image.full_path}") %>
+            <%= image_tag "/#{image.full_path}", class: "image" %>
+          <% else %>
+            <%= image_tag "noimage.jpg", class: "image" %>
+          <% end %>
+          <div class="topic">
+            <h3 class="title"><%= t('.year',{year: year})%></h3>
+            <div class="clearfix">
+              <p class="desc">
+                <% @games.year(year).each do |game| %>
+                  <%= time_tag game.date, game.date.strftime( "%Y/%m/%d" ), class: "date" %>  <%= "#{truncate(game.game, length: 25)}" %><br/>
+                <% end %>
+              </p>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+      <%= link_to content_tag(:p, t('.see_archives'), class: "title"), "results/archives", class: "box low-height-box" %>
+    </div>
+  </div>
+  <div class="sidemenu"> <!--右側のバー。SNS-->
+    <div class="heading">
+      <h2>学生大会</h2>
+    </div>
+    <% 0.upto(4) do |idx| %>
+      <%= content_tag :h3, t("results.#{anchor_type[idx]}"), class: "center" %>
+      <ul class="link">
+        <% @games.where(game_anchor: idx + 1).limit(4).each do |game| %>
+          <%= content_tag :li do %>
+            <%= link_to t('.year',{year: game.year}), "results/year/#{game.year}##{anchor_type[idx]}" %>
+          <% end %>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+ja:
+  general:
+    team_name: Univ. Tsukuba Triathlon Team
+    contact: Contact us
+  nav_menu:
+    home: Home
+    about: About Us
+    members: Members
+    member:
+      b1: Freshman
+      b2: Sophomore
+      b3: Junior
+      b4: Senior
+      master: Graduate
+      obog: OBOG
+    results: Results
+    garalley: Garalley
+    sns: SNS
+    link: Links
+    for_members: For Members
+    admin_home: Admin Home
+    admin_members: Members Info
+    admin_games:  Games Info
+    admin_divisons: Div Info
+    admin_results: Results
+    admin_topics: Topics
+    admin_released_infos: Released Info
+    admin_images: Images
+  will_paginate:
+    previous_label: "<<Prev."
+    next_label: "Next>>"
+  activerecord:
+    models:
+      member: 会員情報
+      article: ニュース記事
+      entry: ブログ記事
+      member_image: 会員画像
+      game: 大会情報
+      admin_game: 大会情報
+      dividion: 大会部門情報
+      released_info: 更新情報
+    errors:
+      messages:
+        too_big_image: が大きすぎます(最大10MB)。
+        invaild_image: の形式が違います(JPEG、GIF、PNGのいずれかにしてください)。

@@ -1,0 +1,22 @@
+<thead>
+  <tr>
+    <th><%= t('activerecord.attributes.lab/practice_log.rank') %></th>
+    <th><%= t('activerecord.attributes.lab/practice_log.name') %></th>
+    <th><%= t('activerecord.attributes.lab/practice_log.swim') %></th>
+    <th><%= t('activerecord.attributes.lab/practice_log.bike') %></th>
+    <th><%= t('activerecord.attributes.lab/practice_log.run') %></th>
+    <th><%= t('activerecord.attributes.lab/practice_log.conv_dist') %></th>
+  </tr>
+</thead>
+<tbody>
+  <% logs.each_with_index do |log, i| %>
+    <tr>
+      <td><%= i + 1 %></td>
+      <td><%= link_to log.member.full_name, member_lab_practice_logs_path(log.member_id) %></td>
+      <td><%= log.swim_sum %></td>
+      <td><%= log.bike_sum %></td>
+      <td><%= log.run_sum %></td>
+      <td><%= log.conv_dist.round(3) %></td>
+    </tr>
+  <% end %>
+</tbody>

@@ -1,0 +1,49 @@
+/*
+  *= require_self
+*/
+.comment{
+  text-align: center;
+  color: #ffbf00;
+  font-size: 1.5rem;
+}
+.latest{
+  text-decoration: underline;
+  color: red;
+  font: bold;
+  font-size: 2rem;
+}
+.box{
+    height: 228px;
+}
+.sublink{
+  padding: 3px 10px;
+}
+.subheading{
+  display: block;
+  text-align: left;
+  border-bottom: 1px dashed #111;
+  color: #1C5D79;
+}
+.movie{
+  width: 640px;
+  height: 360px;
+}
+#movies .list a{
+  display: block;
+  border: 1px solid #ffbf00;
+  background-color: #ffbf00;
+  float: left;
+  box-sizing: border-box;
+  text-align: center;
+  color: #111;
+  width: 13%;
+  padding: 10px;
+  margin: 0 3px 10px 3px;
+  font-size: 1.2rem;
+  border-radius: 25px
+}
+@media (max-width: 480px), (max-device-width: 480px){
+  .comment{
+    display: none;
+  }
+}

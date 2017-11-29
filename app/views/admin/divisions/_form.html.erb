@@ -1,0 +1,80 @@
+<% if @division.game
+case @division.game.game_type
+when 1 # triathlon
+  @distances = [["#{t('dist.ssprint')}",'ss'],["#{t('dist.sprint')}",'sprint'],["#{t('dist.short')}",'short'],["#{t('dist.middle')}",'middle'],
+  ["#{t('dist.long')}",'long'],["#{t('dist.iron_703')}",'IRONMAN_70.3'],["#{t('dist.iron')}",'IRONMAN'],["#{t('general.others')}",'others']]
+when 2 # duathlon
+  @distances = [["#{t('dist.calfman')}",'du_calfman'],["#{t('dist.du_championship')}",'du_championship'],["#{t('general.others')}",'others']]
+when 3 # 3part-aquathlon
+  @distances = [["#{t('dist.aqua_WC')}",'aqua_WC'],["#{t('general.others')}",'others']]
+when 4 # 2part-aquathlon
+  @distances = [["#{t('dist.aqua_sprint')}",''],["#{t('dist.aqua_normal')}"],["#{t('general.others')}",'others']]
+end; end %>
+<script>
+$(document).on('turbolinks:load', function() {
+  var year_select = $('[data-role="year_select"]');
+  var url = '/admin/division/ajax';
+  year_select.change(function(){
+    $.get(url, {year: year_select.has('option:selected').val()});
+  });
+});
+$(document).on('turbolinks:load', function() {
+  var game_select = $('[data-role="game_select"]');
+  var url = '/admin/division/ajax';
+  game_select.change(function(){
+    $.get(url, {game: game_select.has('option:selected').val()});
+  });
+});
+</script>
+<%= form_with(model: division, local: true) do |form| %>
+  <% if division.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= t('activerecord.errors.prohibited',{model: "#{t('activerecord.models.admin/division')}",count: division.errors.count}) %></h2>
+
+      <ul>
+      <% division.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <% year = division.game != nil ? division.game.year : nil %>
+    <label for="year"><%= t('general.year') %></label>
+    <%= select_tag 'year', options_from_collection_for_select(Admin::Game.select(:year).distinct, :year, :year, year), include_blank: t('form.select'), class: 'form-control', 'data-role' => 'year_select' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :game_id %>
+    <%= form.collection_select :game_id, @games, :id, :game, {include_blank: t('form.select')}, {id: :result_game_id, class: 'form-control', "data-role" => "game_select"} %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :div %>
+    <%= form.text_field :div, id: :division_div, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :distance %>
+    <%= form.select :distance, @distances, {include_blank: t('form.select')}, id: :division_distance, class: 'form-control', data: { role: 'distance' } %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :finisher %>
+    <%= form.number_field :finisher, id: :division_finisher, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :team_rank %>
+    <%= form.number_field :team_rank, id: :division_team_rank, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :num_of_team %>
+    <%= form.number_field :num_of_team, id: :division_num_of_team, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.submit class: 'btn btn-primary' %>
+  </div>
+<% end %>

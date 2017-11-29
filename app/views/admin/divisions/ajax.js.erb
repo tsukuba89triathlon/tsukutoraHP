@@ -1,0 +1,34 @@
+<% if @ajax == 'game' %>
+$('[data-role="game_select"]').html(
+  "<%= escape_javascript(options_for_select(@games.map{|c| [c.game,c.id]})) %>"
+);
+<% case @games.first.game_type
+when 1 # triathlon
+  @distances = [["#{t('dist.ssprint')}",'ss'],["#{t('dist.sprint')}",'sprint'],["#{t('dist.short')}",'short'],["#{t('dist.middle')}",'middle'],
+  ["#{t('dist.long')}",'long'],["#{t('dist.iron_703')}",'IRONMAN_70.3'],["#{t('dist.iron')}",'IRONMAN'],["#{t('general.others')}",'others']]
+when 2 # duathlon
+  @distances = [["#{t('dist.calfman')}",'du_calfman'],["#{t('dist.du_championship')}",'du_championship'],["#{t('general.others')}",'others']]
+when 3 # 3part-aquathlon
+  @distances = [["#{t('dist.aqua_WC')}",'aqua_WC'],["#{t('general.others')}",'others']]
+when 4 # 2part-aquathlon
+  @distances = [["#{t('dist.aqua_sprint')}",'aqua_sprint'],["#{t('dist.aqua_normal')}",'aqua_normal'],["#{t('general.others')}",'others']]
+end %>
+$('[data-role="distance"]').html(
+  "<%= escape_javascript(options_for_select(@distances)) %>"
+);
+<% elsif @ajax == 'distance' %>
+<% case @distance
+when 1 # triathlon
+  @distances = [["#{t('dist.ssprint')}",'ss'],["#{t('dist.sprint')}",'sprint'],["#{t('dist.short')}",'short'],["#{t('dist.middle')}",'middle'],
+  ["#{t('dist.long')}",'long'],["#{t('dist.iron_703')}",'IRONMAN_70.3'],["#{t('dist.iron')}",'IRONMAN'],["#{t('general.others')}",'others']]
+when 2 # duathlon
+  @distances = [["#{t('dist.calfman')}",'du_calfman'],["#{t('dist.du_championship')}",'du_championship'],["#{t('general.others')}",'others']]
+when 3 # 3part-aquathlon
+  @distances = [["#{t('dist.aqua_WC')}",'aqua_WC'],["#{t('general.others')}",'others']]
+when 4 # 2part-aquathlon
+  @distances = [["#{t('dist.aqua_sprint')}",''],["#{t('dist.aqua_normal')}"],["#{t('general.others')}",'others']]
+end %>
+$('[data-role="distance"]').html(
+  "<%= escape_javascript(options_for_select(@distances)) %>"
+);
+<% end %>

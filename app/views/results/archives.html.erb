@@ -1,0 +1,36 @@
+<% @page_title = t('.title') %>
+<% game_anchors = %w{spring kankare inkare sprint duathlon} %>
+<div class="contents">
+  <div class="heading">
+    <h1><%= @page_title %></h1>
+  </div>
+  <table class="result_archives">
+    <caption></caption>
+    <thead>
+      <tr>
+        <th scope="row"><%= t('general.year') %></th>
+        <th scope="row"><%= t('.results_year') %></th>
+        <th colspan=5 scope="row"><%= t('.results_game') %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% year = 0 %>
+      <% @games.each do |game| %>
+        <% if (game.year != year); year = game.year %>
+        <tr>
+          <th scope="col"><%= game.year %></th>
+          <td><%= link_to t('.result'), "year/#{game.year}", class: "table_box" %></td>
+          <% 0.upto(4) do |idx| %>
+          <td>
+            <% game = @games.where(year: year).find_by(game_anchor: idx+1) %>
+            <% if game.present? %>
+              <%= link_to t("results.#{game_anchors[idx]}"), "year/#{game.year}##{game_anchors[idx]}", class: "table_box" %>
+            <% end %>
+          </td>
+          <% end %>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

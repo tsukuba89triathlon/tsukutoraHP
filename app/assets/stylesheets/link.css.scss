@@ -1,0 +1,73 @@
+/*
+  *= require_self
+  *= require_tree
+*/
+
+/*汎用色の定義*/
+$purple: #A176CC;
+$skyblue: #1097FF;
+$yellow: #FFBF00;
+$orange: #FF9200;
+$blue: #2525ff;
+.links{
+  margin-bottom: 10px;
+  border: none;
+  .heading{
+    border-bottom: 1px dotted #111;
+    text-align: left;
+    padding-left: 15px;
+  }
+  .tsukuba{
+    .heading{
+      color: $purple;
+    }
+    .link{
+      background-color: $purple;
+    }
+  }
+  .org{
+    .heading{
+      color: $yellow;
+    }
+    .link{
+      background-color: $yellow;
+    }
+  }
+  .clubs{
+    .heading{
+      color: $orange;
+    }
+    .link{
+      background-color: $orange;
+    }
+  }
+  .SNS{
+    .heading{
+      color: $skyblue;
+    }
+    .link{
+      background-color: $skyblue;
+    }
+  }
+  .link{
+    display: block;
+    border: 1px solid #111;
+    float: left;
+    box-sizing: border-box;
+    text-align: center;
+    color: #fff;
+    width: 25%;
+    padding: 10px;
+    font-size: 1.3rem;
+  }
+}
+@media (max-width: 480px), (max-device-width: 480px){
+    .topics .link{
+        float: none;
+        width: 100%;
+        font-size: 40px;
+    }
+    .topics .heading{
+        font-size: 40px;
+    }
+}

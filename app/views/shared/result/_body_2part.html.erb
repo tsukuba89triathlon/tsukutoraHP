@@ -1,0 +1,52 @@
+<tbody>
+  <% game.divisions.includes(:results).each do |division| %>
+  <% results = division.results.includes(:member).order(state: :asc, total_rank: :asc) %>
+  <% results.each do |result| %>
+  <tr>
+    <% if result == results.first %>
+      <%= content_tag :td, rowspan: "#{results.count}" do %>
+        <%= result.division.div %>
+        <% if result.division.finisher %>
+        <br/><%= t('.finisher',{num: result.division.finisher}) %>
+        <% end %>
+        <% if result.division.team_rank && result.division.num_of_team %>
+        <br/><%= t('.team_rank',{rank: result.division.team_rank, num: result.division.num_of_team}) %>
+        <% end %>
+      <% end %>
+    <% end %>
+    <% case result.state %>
+      <% when 0 %>
+        <%= content_tag :td, result.total_rank %>
+      <% when 1 %>
+        <%= content_tag :td, "DSQ" %>
+      <% when 2 %>
+        <%= content_tag :td, "TOV" %>
+      <% when 3 %>
+        <%= content_tag :td, "DNF" %>
+      <% when 4 %>
+        <%= content_tag :td, "SKIP" %>
+      <% when 5 %>
+        <%= content_tag :td, "DNS" %>
+    <% end %>
+    <%= content_tag :th, result.member.full_name, scope: "row" %>
+    <% if result.total_time != nil %>
+      <%= content_tag :td, result.total_time.strftime("%H:%M:%S") %>
+    <% else %>
+      <td></td>
+    <% end %>
+    <% if result.s_time != nil %>
+      <%= content_tag :td, result.s_time.strftime("%H:%M:%S") %>
+    <% else %>
+      <td></td>
+    <% end %>
+      <%= content_tag :td, result.s_rank %>
+    <% if result.b_time != nil %>
+      <%= content_tag :td, result.b_time.strftime("%H:%M:%S") %>
+    <% else %>
+      <td></td>
+    <% end %>
+    <%= content_tag :td, result.b_rank %>
+  </tr>
+  <% end %>
+  <% end %>
+</tbody>

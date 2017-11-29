@@ -1,0 +1,26 @@
+<% @page_title = t('.title') %>
+<div class="contents clearfix">
+  <div class="heading">
+    <h1><%= @page_title %></h1>
+  </div>
+  <% if notice %><div id="notice"><%= notice %></div><% end %>
+
+   <table class="menu">
+     <thead>
+       <tr>
+         <th><%= t('activerecord.attributes.admin/college.school') %></th>
+         <th><%= t('activerecord.attributes.admin/college.college') %></th>
+         <th><%= t('activerecord.attributes.admin/college.abbreviation') %></th>
+       </tr>
+     </thead>
+     <tbody>
+       <tr>
+         <td><%= @college.school.school %></td>
+         <td><%= @college.college %></td>
+         <td><%= @college.abbreviation %></td>
+       </tr>
+   </table>
+
+  <%= link_to t('general.edit'), edit_admin_college_path(@college), class: 'btn btn-default' %>
+  <%= link_to t('general.back'), admin_colleges_path, class: 'btn btn-default' %>
+</div>

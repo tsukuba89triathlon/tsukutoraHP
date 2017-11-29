@@ -1,0 +1,10 @@
+<% @page_title = t('.title') %>
+<div class="contents">
+  <div class="heading">
+    <h1><%= @page_title %></h1>
+  </div>
+
+  <%= render 'form', game: @game %>
+
+  <%= link_to t('general.back'), admin_games_path, class: 'btn btn-default' %>
+</div>

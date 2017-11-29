@@ -1,0 +1,21 @@
+// Place all the styles related to the images controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+$skyblue: #1097FF;
+.boxes{
+  .image_box{
+    float: left;
+    width: 24%;
+    padding: 10px 10px;
+    box-sizing: border-box;
+    background-color: $skyblue;
+    margin: 0.5%;
+    .image_thumbnail{
+      width: 210px;
+      height: 118px;
+    }
+    .desc{
+      padding-top: 10px;
+    }
+  }
+}

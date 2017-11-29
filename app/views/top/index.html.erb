@@ -1,0 +1,81 @@
+<% @page_title = t('.title') %>
+<script>
+$(document).ready(function(){
+  $('.bxslider').bxSlider({
+    mode: 'fade',
+    auto: true,
+    autoControls: true,
+    pause: 3500,
+    speed: 800
+  });
+});
+</script>
+<div class="slide_show">
+  <% if @images.count == 0 %>
+  <% elsif @images.count == 1 %>
+    <% img = @images.first %>
+    <%= image_tag "/#{img.full_path}", width: 960, height: 600 %>
+  </ul>
+  <% else %>
+  <ul class="bxslider" id="slide"> <!--スライドショー-->
+    <% @images.each do |img| %>
+      <li><%= image_tag "/#{img.full_path}", width: 960, height: 600 %></li>
+    <% end %>
+  </ul>
+  <% end %>
+</div>
+<div class="contents clearfix">
+  <section class="article">
+    <article class="topics">
+      <h2 class="hidden">お知らせ</h2>
+        <%= link_to url_for(controller: :topics, action: :show, id: @topic.id), class: "box clearfix" do %>
+          <%= image_tag "/#{@topic.path}", class: "image", alt: "topic関連写真" %>
+          <div class="main-topic"> <!--メイントピック-->
+              <%= time_tag @topic.date, @topic.date, class: "date" %>
+              <h3 class="title"><%= @topic.title %></h3>
+              <p class="desc"><%= truncate(@topic.body, :omission => "…", :length => 80 ) %></p>
+              <p class="desc">(クリックすると詳細が見れます)</p>
+            </div>
+        <% end %>
+    </article>
+    <article class="news">
+      <h2 class="heading"><%= t 'activerecord.models.released_info' %></h2>
+      <ul class="scroll-list">
+        <% @infos.each do |info| %>
+        <li class="scroll-item"><!--このli単位をコピーして利用-->
+          <%= link_to info.link do %>
+            <%= time_tag info.date, "#{info.date.strftime("%Y/%m/%d")}", class: :date %>
+            <span class="title"><%= info.body %></span>
+          <% end %>
+        </li>
+        <% end %>
+      </ul>
+      <%= link_to t('general.see_more'), released_infos_path, class: 'btn btn-default' %>
+    </article>
+  </section>
+  <aside class="sidemenu"> <!--右側のバー。SNS-->
+    <div class="twitter">
+      <h2 class="heading"> <!--タイトル-->
+        Twitter
+      </h2>
+      <div> <!--中身-->
+        <a class="twitter-timeline"  href="https://twitter.com/tsukutora" data-widget-id="726942149892173825" height="350">
+        </a>
+        <script>
+          !function(d,s,id){
+            var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
+            if(!d.getElementById(id)){
+              js=d.createElement(s);
+              js.id=id;js.src=p+"://platform.twitter.com/widgets.js";
+              fjs.parentNode.insertBefore(js,fjs);
+              }
+            }
+            (document,"script","twitter-wjs");
+        </script>
+      </div>
+    </div>
+    <a class="contact_box" href="./contact.html">
+      <div class="contact_item"><%= t('contact') %></div>
+    </a>
+  </aside>
+</div>

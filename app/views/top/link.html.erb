@@ -1,0 +1,38 @@
+<% @page_title = t('.title') %>
+<div class="contents">
+  <div class="heading">
+    <h1><%= @page_title %></h1>
+  </div>
+  <div class="links">
+    <div class="tsukuba clearfix"> <!--中身-->
+      <h2 class="heading"><%= t('.university') %></h2>
+      <%= link_to "筑波大学", "https://www.tsukuba.ac.jp", class: :link %>
+      <%= link_to "筑波大学体育会", "http://www.stb.tsukuba.ac.jp/~taiikukai/", class: :link %>
+      <%= link_to "つくばスポーツオンライン", "http://www.sports.tsukuba.ac.jp/", class: :link %>
+    </div>
+    <div class="org clearfix">
+      <h2 class="heading"><%= t('.triathlon') %></h2>
+      <%= link_to "日本トライアスロン連合 - JTU", "http://www.jtu.or.jp/", class: :link %>
+      <%= link_to "日本学生トライアスロン連合 - JUTU", "http://jutu.jimdo.com/", class: :link %>
+      <%= link_to "Calfman Japan", "http://www.calfman.jp/", class: :link %>
+      <%= link_to "TRI-X", "http://www.tri-x.jp/", class: :link %>
+    </div>
+    <div class="clubs clearfix">
+      <h2 class="heading"><%= t('.other_teams') %></h2>
+      <%= link_to "北海道大学 - ちゃらんけ", "http://charanke.web.fc2.com/", class: :link %>
+      <%= link_to "東北大学 - とんとら", "http://tontora.wixsite.com/triathlon", class: :link %>
+      <%= link_to "中央・法政大学 - Afro-Q", "http://afroq.wp.xdomain.jp/", class: :link %>
+      <%= link_to "明治大学 - METAL", "http://mmmetal.is-mine.net/index.html", class: :link %>
+      <%= link_to "東海大学 - BOMBERS", "http://bombers.shn.u-tokai.ac.jp/", class: :link %>
+      <%= link_to "日本大学 - ULTRA", "http://ameblo.jp/nu-ultra/", class: :link %>
+      <%= link_to "学習院大学 - 桜鐡会", "http://www.gakushuin-triathlon.com/", class: :link %>
+      <%= link_to "順天堂大学", "http://juntendo3athlon.web.fc2.com/", class: :link %>
+    </div>
+    <div class="SNS clearfix">
+      <h2 class="heading"><%= t('.sns') %></h2>
+      <%= link_to "部ログ", "http://tsukuba-triathlon.blogspot.jp/", class: :link %>
+      <%= link_to "Twitter", "https://twitter.com/tsukutora", class: :link %>
+      <%= link_to "Facebook", "https://www.facebook.com/tsukutora", class: :link %>
+    </div>
+  </div>
+</div>

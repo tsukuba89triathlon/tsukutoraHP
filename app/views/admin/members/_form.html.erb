@@ -1,0 +1,58 @@
+<%= form_with(model: member, local: true) do |form| %>
+  <% if member.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= t('activerecord.errors.prohibited', { model: "#{t('activerecord.models.admin/member')}", count: member.errors.count } ) %></h2>
+
+      <ul>
+      <% member.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class='form-group'>
+    <%= form.label :full_name %>
+    <%= form.text_field :full_name, id: :admin_member_full_name, class: 'form-control' %>
+  </div>
+  <div class='form-group'>
+    <%= form.label :yomigana %>
+    <%= form.text_field :yomigana, id: :admin_member_yomigana, class: 'form-control' %>
+  </div>
+  <% if controller.action_name == "new" %>
+  <div class='form-group'>
+    <%= form.label :user_name %>
+    <%= form.text_field :user_name, id: :admin_member_user_name, class: 'form-control' %>
+  </div>
+  <div class='form-group'>
+    <%= form.label :password %>
+    <%= form.password_field :password, id: :admin_member_password, class: 'form-control' %>
+  </div>
+  <% end %>
+
+  <div class='form-group'>
+    <%= form.label :status %>
+    <%= form.select(:status, [['現役', 1],['退部', 2],['OB/OG', 3]], {}, {class: 'form-control'}) %>
+  </div>
+
+  <div class='form-group'>
+    <%= form.label :grade, '学年' %>
+    <%= form.select(:grade, [['B1', 1],['B2', 2],['B3', 3],['B4', 4],['M1(B5)', 11],['M2(B6)', 12],['D1', 21],['D2',22],['D3',23]], {}, {class: 'form-control'}) %>
+  </div>
+
+  <div class='form-group'>
+    <%= form.label :college_id, '所属' %>
+    <%= form.grouped_collection_select(:college_id, Admin::School.includes(:colleges), :colleges, :school, :id, :college,{}, {id: :admin_member_belongs, class: 'form-control'}) %>
+  </div>
+  <div class='form-group'>
+    <%= form.label :administration, '管理者権限' %>
+    <%= form.check_box :administration, id: :admin_member_administration, class: 'form-control' %>
+  </div>
+  <div class='form-group'>
+    <%= form.label :lab_admin, 'Lab管理者権限' %>
+    <%= form.check_box :lab_admin, id: :admin_member_lab_admin, class: 'form-control' %>
+  </div>
+
+  <div>
+    <%= form.submit class: 'btn btn-primary' %>
+  </div>
+<% end %>

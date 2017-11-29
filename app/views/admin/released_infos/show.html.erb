@@ -1,0 +1,24 @@
+<% @page_title = t('.title') %>
+<div class="contents">
+  <div class="heading">
+    <h1><%= @page_title %></h1>
+  </div>
+  <% if notice %><div id="notice"><%= notice %></div><% end %>
+  <table>
+    <thead>
+      <tr>
+        <th><%= t('activerecord.attributes.admin/released_info.date') %></th>
+        <th><%= t('activerecord.attributes.admin/released_info.body') %></th>
+      </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+          <td><%= @released_info.date %></td>
+          <td><%= @released_info.body %></td>
+        </tr>
+    </tbody>
+  </table>
+  <%= link_to t('general.edit'), edit_admin_released_info_path(@released_info), class: 'btn btn-default' %>
+  <%= link_to t('general.back'), admin_released_infos_path, class: 'btn btn-default' %>
+</div>

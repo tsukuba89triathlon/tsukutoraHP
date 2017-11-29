@@ -1,0 +1,98 @@
+<% @page_title = t('.title') %>
+<script>
+$(document).ready(function(){
+  $('.bxslider').bxSlider({
+    mode: 'fade',
+    auto: true,
+    autoControls: true,
+    pause: 3500,
+    speed: 800
+  });
+});
+</script>
+<div class="contents">
+  <div class="heading">
+    <h1><%= @page_title %></h1>
+  </div>
+  <% if notice %><div id="notice"><%= notice %></div><% end %>
+  <div class="profile clearfix">
+    <%= render 'profile_image', member: @member %>
+    <div class="desc">
+      <table class="member">
+        <caption><%= @member.full_name %></caption>
+        <tbody>
+          <tr>
+              <th>所属・学年</th>
+              <td><%= @member.belong %> <%= @member.grade_str %></td>
+          </tr>
+          <tr>
+              <th>出身地</th>
+              <td><%= @member.hometown %></td>
+          </tr>
+          <tr>
+              <th>出身校</th>
+              <td><%= @member.school %></td>
+          </tr>
+          <tr>
+              <th>出身競技</th>
+              <td><%= @member.sports %></td>
+          </tr>
+          <tr>
+              <th>愛車</th>
+              <td><%= @member.bike %></td>
+          </tr>
+          <tr>
+              <th>好きなパート</th>
+              <td><%= @member.part %></td>
+          </tr>
+          <tr>
+              <th>トライアスロンの魅力</th>
+              <td><%= @member.addiction %></td>
+          </tr>
+          <tr>
+              <th>目標</th>
+              <td><%= @member.goal %></td>
+          </tr>
+          <% if @member.q1.present? %>
+            <tr>
+              <th><%= @member.q1 %></th>
+              <td><%= @member.a1 %></td>
+            </tr>
+          <% end %>
+          <% if @member.q2.present? %>
+            <tr>
+              <th><%= @member.q2 %></th>
+              <td><%= @member.a2 %></td>
+            </tr>
+          <% end %>
+          <% if @member.q3.present? %>
+            <tr>
+              <th><%= @member.q3 %></th>
+              <td><%= @member.a3 %></td>
+            </tr>
+          <% end %>
+          <% if @member.q4.present? %>
+            <tr>
+              <th><%= @member.q4 %></th>
+              <td><%= @member.a4 %></td>
+            </tr>
+          <% end %>
+          <% if @member.q5.present? %>
+            <tr>
+              <th><%= @member.q5 %></th>
+              <td><%= @member.a5 %></td>
+            </tr>
+          <% end %>
+          <tr>
+            <th>最後に一言</th>
+            <td><%= @member.last %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <% if session[:member_id] && params[:id].to_i == session[:member_id] %>
+    <%= link_to t('general.edit'), edit_account_member_path(@member), class: 'btn btn-default' %>
+    <%= link_to 'アカウントページへ', account_path, class: 'btn btn-default' %>
+  <% end %>
+</div>

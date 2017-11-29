@@ -1,0 +1,20 @@
+<% @page_title = "現役部員向けコンテンツ" %>
+<% contents = [["documents","ミーティング資料・議事録"],
+	 					["account","メンバーページ"],
+						["lab/seminars","勉強会ページ"],
+						["lab/data","データ集"],
+						["lab/practice_logs/rank","練習ログ"]] %>
+<div class="contents">
+	<div class="heading">
+		<h1>現部用ページ</h1>
+	</div>
+  <div class="clearfix">
+		<% 0.upto(contents.count - 1) do |idx| %>
+		<div class="box-wrapper low-height-box half-box">
+			<%= link_to contents[idx][0] do %>
+				<h2 class="title"><%= contents[idx][1] %></h2>
+			<% end %>
+    </div>
+		<% end %>
+  </div>
+</div>

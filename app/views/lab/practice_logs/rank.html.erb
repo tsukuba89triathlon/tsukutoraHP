@@ -1,0 +1,19 @@
+<% @page_title = t('.title') %>
+<% if notice %><div id="notice"><%= notice %></div><% end %>
+<div class="contents clearfix">
+  <div class="heading">
+    <h1><%= @page_title %></h1>
+  </div>
+  <table class="menu">
+    <caption>今月（<%= Date.today.strftime('%Y年%m月') %>）分 ランキング</caption>
+    <%= render 'rank_table', logs: @monthly_logs %>
+  </table>
+  <%= link_to "過去の月間ランキングを見る", monthly_rank_lab_practice_logs_path, class: 'btn btn-default' %>
+  <table class="menu">
+    <caption>今年度（<%= Date.today.months_ago(3).strftime('%Y年度') %>）分 ランキング</caption>
+    <%= render 'rank_table', logs: @annual_logs %>
+  </table>
+  <div><%= link_to "過去の年間ランキングを見る", annual_rank_lab_practice_logs_path, class: 'btn btn-default' %></div>
+  <br>
+  <%= link_to "#{t('general.new',{model: t('activerecord.models.lab/practice_log')})}", new_lab_practice_log_path, class: 'btn btn-default' %>
+</div>

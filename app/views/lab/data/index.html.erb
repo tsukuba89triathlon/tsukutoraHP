@@ -1,0 +1,97 @@
+<% @page_title = "データ集" %>
+<% contents = %w{大会データ 漸増負荷試験 TTデータ} %>
+<div class="contents clearfix">
+	<article class="article">
+		<div class="heading">
+			<h1>測定データ集</h1>
+		</div>
+		<table class="menu">
+			<caption class="title">
+				大会データ
+			</caption>
+			<thead>
+				<tr>
+					<th>No,</th>
+					<th>大会名</th>
+					<th>氏名</th>
+					<th>Link</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @data.each_with_index do |data,i| %>
+				<tr>
+					<th><%= i + 1 %></th>
+					<td><%= data.title %></td>
+					<td><%= data.member.full_name %></td>
+					<td><%= link_to data.file_path %></td>
+				</tr>
+				<% end %>
+				<tr>
+					<th>2</th>
+					<td>松﨑 大典</td>
+					<td><a href="../../document/test/20161016_wama.pdf">データファイル</a></td>
+				</tr>
+			</tbody>
+		</table>
+		<table class="menu">
+			<caption class="title">
+				漸増負荷試験データ
+			</caption>
+			<thead>
+				<tr>
+					<th>No,</th>
+					<th>実施日時</th>
+					<th>氏名</th>
+					<th>Link</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th>1</th>
+					<td>2016 10月</td>
+					<td>和間 雄司</td>
+					<td><a href="../../document/test/20161016_wama.pdf">データファイル</a></td>
+				</tr>
+			</tbody>
+		</table>
+		<table class="menu">
+			<caption class="title">
+				TTデータ
+			</caption>
+			<thead>
+				<tr>
+					<th>No,</th>
+					<th>実施日時</th>
+					<th>氏名</th>
+					<th>Link</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th>1</th>
+					<td>2016 10月</td>
+					<td>和間 雄司</td>
+					<td><a href="../../document/test/20161016_wama.pdf">データファイル</a></td>
+				</tr>
+			</tbody>
+		</table>
+		<%= link_to 'Lab管理者メニュー', lab_root_path, class: 'btn btn-default' %>
+	</article>
+	<aside class="sidemenu">
+		<div class="heading">
+      <h2> <!--タイトル-->
+        メニュー
+      </h2>
+    </div>
+    <% contents.each do |content| %>
+		<%= content_tag :h3, content %>
+    <ul class="link">
+      <% 0.upto(3) do |idx| %>
+        <%= content_tag :li do %>
+					<%= link_to "#", "#" %>
+        <% end %>
+      <% end %>
+    </ul>
+    <% end %>
+	</aside>
+</div>

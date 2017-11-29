@@ -1,0 +1,24 @@
+<table class="menu">
+  <caption><%= t('general.member_status.obog_member') %></caption>
+  <thead>
+    <tr>
+      <th><%= t('activerecord.attributes.admin/member.graduated_year') %></th>
+      <th><%= t('activerecord.attributes.admin/member.full_name') %></th>
+      <th colspan="3"></th>
+      <th><%= t('activerecord.attributes.admin/member.remarks') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @obog.each do |member| %>
+    <tr>
+      <td><%= member.graduated_year.year %>年度</td>
+      <th><%= member.full_name %></th>
+      <td><%= link_to t('general.show'), admin_member_path(member) %></td>
+      <td><%= link_to t('general.edit'), edit_admin_member_path(member) %></td>
+      <td><%= link_to t('general.delete'), admin_member_path(member), method: :delete, data: {confirm: t('general.delete_confirm')} %></td>
+      <td></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @obog %>

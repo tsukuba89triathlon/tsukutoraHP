@@ -1,0 +1,63 @@
+function checkbox_change (state) {
+  switch (state) {
+    case 0:
+      $('input[type="checkbox"]').prop("checked",false);
+      break;
+    case 3:
+      $('input#result_total_check').prop('checked',true);
+      $('input#result_s_check').prop('checked',false);
+      $('input#result_b_check').prop('checked',false);
+      $('input#result_split_check').prop('checked',false);
+      $('input#result_r_check').prop('checked',false);
+      break;
+    case 4:
+      $('input#result_total_check').prop('checked',true);
+      $('input#result_s_check').prop('checked',true);
+      $('input#result_b_check').prop('checked',false);
+      $('input#result_split_check').prop('checked',true);
+      $('input#result_r_check').prop('checked',false);
+      break;
+    case 5:
+      $('input[type="checkbox"]').prop('checked',true);
+      break;
+  }
+}
+function label_name_change (type) {
+  var selecter = ['.total','.swim','.bike','.split','.run']
+  switch (type) {
+    case 1: //triathlon
+      var attribute_names = ['総合','Swim','Bike','Split','Run'];
+      break;
+    case 2: //duathlon
+      var attribute_names = ['総合','1stRun','Bike','Split','2ndRun'];
+      break;
+    case 3:
+      var attribute_names = ['総合','1stRun','Swim','Split','2ndRun'];
+      break;
+    case 4:
+      var attribute_names = ['総合','Swim','Run'];
+      break;
+  }
+  for (var i = 0; i < attribute_names.length; i++) {
+    $(selecter[i]).child('.check').child('label').html(attribute_names[i]);
+    $(selecter[i]).child('.time').child('label').html(attribute_names[i] + 'タイム');
+    $(selecter[i]).child('.rank').child('label').html(attribute_names[i] + '順位');
+  }
+}
+function test() { $("div.test").html("あああ"); }
+function div_change() { $('[data-role="division_select"]').html("<%= escape_javascript(options_for_select(@divisions.map{|c| [c.div,c.id]})) %>");}
+function game_change() { $('[data-role="game_select"]').html("<%= escape_javascript(options_for_select(@games.map{|c| [c.game,c.id]})) %>"); }
+<% if @ajax == 'game' %>
+  var type = <%= @games.first.game_type.to_i %>
+  game_change();
+  div_change();
+  label_name_change(type);
+  test();
+<% elsif @ajax == 'div' %>
+  var type = <% @game.game_type %>
+  div_change();
+  label_name_change(type);
+<% elsif @ajax == 'state' %>
+  var state = <%= @state %>
+  checkbox_change(state);
+<% end %>

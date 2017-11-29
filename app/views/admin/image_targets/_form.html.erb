@@ -1,0 +1,27 @@
+<%= form_with(model: image_target, local: true) do |form| %>
+  <% if image_target.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(image_target.errors.count, "error") %> prohibited this image_target from being saved:</h2>
+
+      <ul>
+      <% image_target.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :target %>
+    <%= form.text_field :target, id: :image_target_target, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :path %>
+    <%= form.text_field :path, id: :image_target_path, class: 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit '保存', class: 'btn btn-primary' %>
+  </div>
+<% end %>

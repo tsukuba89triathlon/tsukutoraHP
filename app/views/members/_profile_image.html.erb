@@ -1,0 +1,13 @@
+<div class="images">
+  <% case member.images.where(effective: true).count; when 0 %>
+  <div class="image_frame"><%= image_tag "noimage.jpg" %></div>
+  <% when 1 %>
+  <div class="image_frame"><%= image_tag "/#{member.images.first.full_path}" %></div>
+  <% else %>
+    <ul class="bxslider">
+      <% member.images.where(effective: true).each do |image| %>
+      <li><%= image_tag "/#{image.full_path}" %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>

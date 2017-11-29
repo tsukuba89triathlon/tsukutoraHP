@@ -1,0 +1,14 @@
+<% @page_title = t('.title') %>
+<% if notice %><div id="notice"><%= notice %></div><% end %>
+<div class="contents clearfix">
+  <div class="heading">
+    <h1><%= @page_title %></h1>
+  </div>
+  <% @logs.each do |log| %>
+  <table class="menu">
+    <caption><%= log[0] %></caption>
+    <%= render 'rank_table', logs: log[1] %>
+  </table>
+  <% end %>
+  <%= link_to "#{t('general.new',{model: t('activerecord.models.lab/practice_log')})}", new_lab_practice_log_path, class: 'btn btn-default' %>
+</div>

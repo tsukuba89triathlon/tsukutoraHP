@@ -1,0 +1,33 @@
+<% @page_title = t('.title',{title: @topic.title}) %>
+<div class="contents">
+  <div class="heading">
+    <h1><%= @topic.title %></h1>
+  </div>
+  <% if notice %><div id="notice"><%= notice %></div><% end %>
+  <%= time_tag @topic.date, @topic.date.strftime('%Y/%m/%d'), class: 'date' %>
+  <% if @topic.path && File.exist?("public/#{@topic.path}") %>
+  <%= image_tag "/#{@topic.path}", class: 'topic_image' %>
+  <% end %>
+  <h3 class="topic-heading"><%= t('.body') %></h3>
+  <%= simple_format(@topic.body, class: 'topic-body') %>
+  <% if @topic.game.present? %>
+  <h3 class="topic-heading"><%= t('.result') %></h3>
+  <% unless @topic.game.results.empty? %>
+    <%= content_tag :table, class: "result" do %>
+      <caption class="title">
+        <%= time_tag @topic.game.date, @topic.game.date %>
+        <%= @topic.game.game %>
+      </caption>
+      <% case @topic.game.game_type
+         when 1 %><%= render 'shared/result/triathlon', game: @topic.game %>
+      <% when 2 %><%= render 'shared/result/duathlon', game: @topic.game %>
+      <% when 3 %><%= render 'shared/result/3part-aqathlon', game: @topic.game %>
+      <% when 4 %><%= render 'shared/result/2part-aqathlon', game: @topic.game %>
+      <% end %>
+    <% end %>
+  <% else %>
+  <%= content_tag :div, "#{t('.in_preparation')}", class: 'prepare' %>
+  <% end %>
+  <% end %>
+  <%= link_to t('general.back'), topics_path, class: 'btn btn-default' %>
+</div>

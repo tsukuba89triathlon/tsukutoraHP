@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= @page_title ? @page_title + " | 筑波大学体育会トライアスロン部" : "筑波大学体育会トライアスロン部" %></title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'jquery.bxslider', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <% if controller.controller_path.split('/')[-2] != nil %>
+      <% path = "#{controller.controller_path.split('/')[-2]}/#{controller.controller_name}" %>
+    <% else %>
+      <% path = controller.controller_name %>
+    <% end %>
+    <%= stylesheet_link_tag path, media: 'all' %>
+    <% if ['for_members','link'].include?(controller.action_name) %>
+      <%= stylesheet_link_tag controller.action_name, media: 'all' %>
+    <% end %>
+    <!-- BootstrapのCSS読み込み -->
+
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag path, 'data-turbolinks-track': 'reload' %>
+    <script src="https:://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="/assets/jquery.bxslider.min.js"></script>
+    <script type="text/javascript" src="/assets/bootstrap-filestyle.min.js"></script>
+  </head>
+
+  <body>
+    <header class="admin_header">
+      <%= render 'shared/admin_header' %>
+    </header>
+    <main>
+      <%= yield %>
+    </main>
+    <footer>
+      <%= render 'shared/footer' %>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,31 @@
+<% @page_title = "#{Member.find(session[:member_id]).full_name}さんのリザルト" %>
+<div class="contents">
+  <div class="heading">
+    <h1><%= @page_title %></h1>
+  </div> <!--中身-->
+  <% @games.each do |game| %>
+    <%= content_tag :table, class: "result" do %>
+      <caption class="title">
+        <%= time_tag game.date, game.date %>
+        <%= game.game %>
+      </caption>
+      <% results = Result.where('game_id = ? AND member_id = ?',game.id,session[:member_id]).includes(:division) %>
+      <% case game.game_type
+      when 1 %><%= render 'shared/result/limited/triathlon', results: results %>
+      <% when 2 %><%= render 'shared/result/limited/duathlon', results: results %>
+      <% when 3 %><%= render 'shared/result/limited/3part-aquathlon', results: results %>
+      <% when 4 %><%= render 'shared/result/limited/2part-aquathlon', results: results %>
+      <% end %>
+    <% end %>
+    <div class="note">
+      <% game.divisions.includes(:results).each do |division| %>
+        <% if division.note && division.note != '' %><span><%= "【#{division.div}】#{division.note}" %></span><% end %>
+        <% division.results.each do |result| %>
+          <% if result.remarks && result.remarks != '' %><span><%= "《#{result.member.full_name}》#{result.remarks}" %></span><% end %>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+  <%= link_to 'アカウントページに戻る', account_path, class: 'btn btn-default' %>
+  <%= link_to 'マイリザルトをダウンロード', "my_results.csv", class: 'btn btn-default' %>
+</div>

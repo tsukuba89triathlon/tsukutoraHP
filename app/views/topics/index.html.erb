@@ -1,0 +1,31 @@
+<% @page_title = t('.title') %>
+<div class="contents clearfix">
+  <article class="article">
+    <div class="heading">
+      <h1><%= @page_title %></h1>
+    </div>
+
+    <% @topics.each do |topic| %>
+      <h2 class="topic_title"><%= topic.title %></h2>
+      <%= content_tag :p, truncate("#{topic.body}", length: 80) %>
+      <div class="detail-info">
+        日付：<%= time_tag topic.date, topic.date %>｜
+        <%= link_to '詳細', topic %>　
+      </div>
+    <% end %>
+  </article>
+  <aside class="monthly_topics">
+    <h2 class="sub_heading"><%= t('.monthly') %></h2>
+    <ul>
+      <% @monthly_topics.each do |month| %>
+      <li><%= "#{month[0][0]}年 #{month[0][1]}月(#{month[1]})" %>
+        <ul>
+          <% month[2].each do |topic| %>
+          <li><%= link_to topic.title, topic %></li>
+          <% end %>
+        </ul>
+      </li>
+      <% end %>
+    </ul>
+  </aside>
+</div>

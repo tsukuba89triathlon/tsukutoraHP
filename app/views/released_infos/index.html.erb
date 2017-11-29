@@ -1,0 +1,27 @@
+<% @page_title = t('.title') %>
+<div class="contents">
+  <div class="heading">
+    <h1><%= @page_title %></h1>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th><%= t('activerecord.attributes.released_info.date') %></th>
+        <th><%= t('activerecord.attributes.released_info.body') %></th>
+        <th><%= t('activerecord.attributes.released_info.link') %></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @released_infos.each do |released_info| %>
+        <tr>
+          <td><%= released_info.date %></td>
+          <td><%= released_info.body %></td>
+          <td><%= link_to released_info.link, "/#{released_info.link}" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= will_paginate @released_infos %>
+</div>

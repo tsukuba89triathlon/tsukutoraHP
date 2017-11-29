@@ -1,0 +1,28 @@
+<% @page_title = "#{params[:year]}年度リザルト" %>
+<main class="main">
+  <div class="heading">
+    <h1><%= @page_title %></h1>
+  </div> <!--中身-->
+  <% @games.each do |game| %>
+    <%= content_tag :table, class: "result", id: game.game_anchor_str do %>
+      <caption class="title">
+        <%= time_tag game.date, game.date.strftime('%Y/%m/%d') %>　
+        <%= game.game %>
+      </caption>
+      <% case game.game_type
+         when 1 %><%= render 'shared/result/triathlon', game: game %>
+      <% when 2 %><%= render 'shared/result/duathlon', game: game %>
+      <% when 3 %><%= render 'shared/result/3part-aquathlon', game: game %>
+      <% when 4 %><%= render 'shared/result/2part-aquathlon', game: game %>
+      <% end %>
+    <% end %>
+    <div class="note">
+      <% game.divisions.each do |division| %>
+      <% if division.note && division.note != '' %><span><%= "【#{division.div}】#{division.note}" %></span><% end %>
+      <% division.results.each do |result| %>
+      <% if result.remarks && result.remarks != '' %><span><%= "《#{result.member.full_name}》#{result.remarks}" %></span><% end %>
+      <% end %>
+      <% end %>
+    </div>
+  <% end %>
+</main>

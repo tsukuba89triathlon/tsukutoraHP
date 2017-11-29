@@ -1,0 +1,63 @@
+<div id="menu_logo" class="clearfix">
+  <% if controller.controller_name == "top" && controller.action_name == 'index' %>
+  <h1 class="logo">
+    <%= link_to t('general.team_name'), :root %>
+  </h1>
+  <% else %>
+  <p class="logo">
+    <%= link_to t('general.team_name'), :root %>
+  </p>
+  <% end %>
+  <nav>
+    <ul id="dropmenu"> <!-- ページの上。全ページ固定-->
+      <li> <!--ホーム-->
+        <%= link_to t('nav_menu.home'), :root %>
+      </li>
+      <li> <!--部・トライアスロン紹介-->
+        <%= link_to t('nav_menu.about'), :about %>
+      </li>
+      <li> <!--部員紹介-->
+        <%= link_to t('nav_menu.members'), :members %>
+        <ul>
+          <% 0.upto(5) do |idx| %>
+          <% grade = %w{b1 b2 b3 b4 master obog} %>
+            <%= content_tag :li do %>
+              <% if (controller.controller_path.split('/')[-2] == nil) %>
+                <%= link_to t("general.grade.#{grade[idx]}"), url_for(controller: :members, action: grade[idx]) %>
+              <% else %>
+                <%= link_to t("general.grade.#{grade[idx]}"), "../members/#{grade[idx]}" %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </ul>
+      </li>
+      <li> <!--リザルト-->
+        <%= link_to t('nav_menu.results'), :results %>
+        <ul>
+          <% 0.upto(3) do |idx| %>
+          <% year = ((Date.today) << 3).year - idx %>
+            <%= content_tag :li do %>
+              <% if (controller.controller_path.split('/')[-2] == nil) %>
+                <%= link_to "#{year}", url_for(controller: :results, action: :year, year: year) %>
+              <% else %>
+                <%= link_to "#{year}", "../results/year/#{year}" %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </ul>
+      </li>
+      <li> <!--アルバム-->
+        <%= link_to t('nav_menu.garalley'), :gallarey %>
+      </li>
+      <li> <!--SNS-->
+        <%= link_to t('nav_menu.sns'), :sns %>
+      </li>
+      <li> <!--リンク-->
+        <%= link_to t('nav_menu.link'), :link %>
+      </li>
+      <li>
+        <%= link_to t('nav_menu.for_members'), :for_members %>
+      </li>
+    </ul>
+  </nav>
+</div>

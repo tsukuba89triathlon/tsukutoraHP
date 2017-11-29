@@ -1,0 +1,2 @@
+class ImageTarget < ApplicationRecord
+end

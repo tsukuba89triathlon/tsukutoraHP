@@ -1,0 +1,52 @@
+<% @page_title = t('.title') %>
+<div class="contents">
+  <div class="heading">
+    <h1><%= @page_title %></h1>
+  </div>
+  <% if notice %><div id="notice"><%= notice %></div><% end %>
+  <div class="user_info">
+    <p><%= t('.welcome',{member: @member.full_name}) %></p>
+  </div>
+  <table class="menu">
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>プロフィール編集</th>
+        <td><%= link_to t('general.edit'), edit_account_member_path(@member) %></td>
+      </tr>
+      <tr>
+        <th>プロフィール画像登録</th>
+        <td><%= link_to t('general.new',{model: t('activerecord.models.image')}), new_account_image_path %></td>
+      </tr>
+      <tr>
+        <th>プロフィール画像編集</th>
+        <td><%= link_to t('general.edit'), account_images_path %></td>
+      </tr>
+      <tr>
+        <th>パスワード編集</th>
+        <td><%= link_to t('general.edit'), pass_edit_account_path %></td>
+      </tr>
+      <tr>
+        <th>マイリザルト</th>
+        <td><%= link_to t('general.show'), my_results_account_path(format: 'html') %></td>
+      </tr>
+      <tr>
+        <th>新規練習ログ登録</th>
+        <td><%= link_to t('general.new',{model: t('activerecord.models.lab/practice_log')}), new_lab_practice_log_path %></td>
+      </tr>
+      <tr>
+        <th>練習ログ編集</th>
+        <td><%= link_to t('general.edit'), lab_practice_logs_path %></td>
+      </tr>
+    </tbody>
+  </table>
+  <% if @member.administration %>
+  <%= link_to '管理者メニューへ', admin_root_path, class: 'btn btn-primary' %>
+  <% end %>
+  <%= link_to 'ログアウト', session_path, method: :delete, data: { confirm: 'ログアウトしますか?' }, class:'btn btn-default' %>
+</div>

@@ -1,0 +1,27 @@
+<%= form_with(model: released_info, local: true) do |form| %>
+  <% if released_info.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(released_info.errors.count, "error") %> prohibited this released_info from being saved:</h2>
+
+      <ul>
+      <% released_info.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :date %><br/>
+    <%= form.date_select :date, {use_months_number: true}, id: :released_info_date, class: 'form-control date-select' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :body %>
+    <%= form.text_area :body, id: :released_info_body, class: 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit '保存', class: 'btn btn-primary' %>
+  </div>
+<% end %>

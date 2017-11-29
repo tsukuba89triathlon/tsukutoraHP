@@ -1,0 +1,23 @@
+<% @page_title = t('.title') %>
+<div class="contents">
+  <div class="heading">
+    <h1><%= @page_title %></h1>
+  </div>
+  <% if notice %><div id="notice"><%= notice %></div><% end %>
+  <table class="result">
+    <caption><%= time_tag @result.game.date, @result.game.date %>　<%= @result.game.game %></caption>
+    <% results = Admin::Result.where(id: @result.id) %>
+    <% case @result.game.game_type
+    when 1 %><%= render 'shared/result/limited/triathlon', results: results %>
+    <% when 2 %><%= render 'shared/result/limited/duathlon', results: results %>
+    <% when 3 %><%= render 'shared/result/limited/3part-aquathlon', results: results %>
+    <% when 4 %><%= render 'shared/result/limited/2part-aquathlon', results: results %>
+    <% end %>
+  </table>
+  <div class="note">
+    <% if @result.division.note && @result.division.note != '' %><span><%= "【#{@result.division.div}】#{@result.division.note}" %></span><% end %>
+    <% if @result.remarks && @result.remarks != '' %><span><%= "《#{@result.member.full_name}》#{@result.remarks}" %></span><% end %>
+  </div>
+  <%= link_to t('general.edit'), edit_admin_result_path(@result), class: 'btn btn-default' %>
+  <%= link_to t('general.back'), admin_results_path, class: 'btn btn-default' %>
+</div>

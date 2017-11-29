@@ -1,0 +1,70 @@
+<div class="col-lg-12 form-group total">
+  <div class="col-lg-2">
+    <%= form.label :total_check %><br>
+    <%= form.check_box :total_check, {id: :result_total_check, class: 'check_box-big'} %>
+  </div>
+  <div class="col-lg-4">
+    <%= form.label :total_time %><br>
+    <%= form.time_select :total_time, {include_seconds: true, default: Time.now.change(year: 1900, month: 1, day: 1, hour: 2, min: 10, sec: 0)}, {id: :result_total_time, class: 'form-control date-select'}%>
+  </div>
+  <div class="col-lg-6">
+    <%= form.label :total_rank %>
+    <%= form.number_field :total_rank, id: :result_total_rank, class: 'form-control' %>
+  </div>
+</div>
+<div class="col-lg-12 form-group">
+  <div class="col-lg-2">
+    <%= form.label :s_check, '1stRun記録なし' %><br>
+    <%= form.check_box :s_check, {id: :result_s_check, class: 'check_box-big'} %>
+  </div>
+  <div class="col-lg-4">
+    <%= form.label :s_time, '1stRunタイム' %><br>
+    <%= form.time_select :s_time, {include_seconds: true, default: Time.now.change(year: 1900, month: 1, day: 1, hour: 0, min: 25, sec: 0)}, {id: :result_s_time, class: 'form-control date-select'} %>
+  </div>
+  <div class="col-lg-6">
+    <%= form.label :s_rank, '1stRun順位' %>
+    <%= form.number_field :s_rank, id: :result_s_rank, class: 'form-control' %>
+  </div>
+</div>
+<div class="col-lg-12 form-group">
+  <div class="col-lg-2">
+    <%= form.label :b_check, 'Swim記録なし' %><br>
+    <%= form.check_box :b_check, {id: :result_b_check, class: 'check_box-big'} %>
+  </div>
+  <div class="col-lg-4">
+    <%= form.label :b_time, 'Swimタイム' %><br>
+    <%= form.time_select :b_time, {include_seconds: true, default: Time.now.change(year: 1900, month: 1, day: 1, hour: 1, min: 5, sec: 0)}, {id: :result_b_time, class: 'form-control date-select'} %>
+  </div>
+  <div class="col-lg-6">
+    <%= form.label :b_rank, 'Swim順位' %>
+    <%= form.number_field :b_rank, id: :result_b_rank, class: 'form-control' %>
+  </div>
+</div>
+<div class="col-lg-12 form-group">
+  <div class="col-lg-2">
+    <%= form.label :split_check %><br>
+    <%= form.check_box :split_check, {id: :result_split_check, class: 'check_box-big'} %>
+  </div>
+  <div class="col-lg-4">
+    <%= form.label :split %><br>
+    <%= form.time_select :split, {include_seconds: true, default: Time.now.change(year: 1900, month: 1, day: 1, hour: 1, min: 30, sec: 0)}, {id: :result_split, class: 'form-control date-select'} %>
+  </div>
+  <div class="col-lg-6">
+    <%= form.label :split_rank %>
+    <%= form.number_field :split_rank, id: :result_split_rank, class: 'form-control' %>
+  </div>
+</div>
+<div class="col-lg-12 form-group run">
+  <div class="col-lg-2">
+    <%= form.label :r_check, '2ndRun記録なし' %><br>
+    <%= form.check_box :r_check, {id: :result_r_check, class: 'check_box-big'} %>
+  </div>
+  <div class="col-lg-4">
+    <%= form.label :r_time, '2ndRunタイム' %><br>
+    <%= form.time_select :r_time, {include_seconds: true, default: Time.now.change(year: 1900, month: 1, day: 1, hour: 0, min: 40, sec: 0)}, {id: :result_r_time, class: 'form-control date-select'} %>
+  </div>
+  <div class="col-lg-6">
+    <%= form.label :r_rank, '2ndRun順位' %>
+    <%= form.number_field :r_rank, id: :result_r_rank, class: 'form-control' %>
+  </div>
+</div>

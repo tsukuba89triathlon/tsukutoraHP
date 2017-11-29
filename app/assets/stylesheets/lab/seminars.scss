@@ -1,0 +1,32 @@
+// Place all the styles related to the lab::seminars controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.seminar_topic{
+  border: 1px solid blue;
+  h2{
+    padding-left: 10px;
+  }
+  .seminar{
+    text-align: left;
+    padding: 0 20px;
+    .theme{
+      border-bottom: 2px dashed #111;
+      padding-bottom: 5px;
+    }
+    .desc{
+      border-bottom: 0.5px solid #111;
+      .content{
+        width: 60%;
+        float: left;
+      }
+      .document{
+        width: 35%;
+        float: right;
+      }
+    }
+    .options{
+      text-align: right;
+      padding: 5px;
+    }
+  }
+}

@@ -1,0 +1,106 @@
+<% @page_title = t('.title') %>
+<div class="contents clearfix">
+  <div class="article">
+    <div class="heading">
+      <h1><%= @page_title %></h1>
+    </div>
+    <div id="photo">
+      <h2 class="subheading">Photoギャラリー</h2>
+        <%= link_to "https://picasaweb.google.com/100444033540252853603", class: "box clearfix" do %>
+          <%= image_tag "noimage.jpg", alt: '関係写真', class: :image %>
+          <div class="topic"> <!--中身-->
+            <h3 class="title">Photo Album 4</h3>
+            <p class="comment">
+              <span class="latest">最新版です！</span><br>
+              2016新歓〜
+            </p>
+          </div>
+        <% end %>
+        <%= link_to "https://picasaweb.google.com/111210836228860753663", class: "box clearfix" do %>
+          <%= image_tag "noimage.jpg", alt: '関係写真', class: :image %>
+          <div class="topic">
+            <h3 class="title">Photo Album 3</h3>
+            <p class="comment">2014館山合宿〜2016筑波春合宿</p>
+          </div>
+        <% end %>
+        <%= link_to "https://get.google.com/albumarchive/111210836228860753663", class: "box clearfix" do %>
+          <%= image_tag "noimage.jpg", alt: '関係写真', class: :image %>
+          <div class="topic">
+            <h3 class="title">
+              Photo Alubm 2
+            </h3>
+            <p class="comment">
+              2011関カレ〜2014関カレ
+            </p>
+          </div>
+        <% end %>
+        <!--<a class="box clearfix hidden" href="#">
+          <img class="image" src="">
+          <div class="topic">
+            <h3 class="title">
+              Photo Alubm 1
+            </h3>
+            <p class="comment">
+              準備中…
+            </p>
+          </div>
+        </a>-->
+      </div>
+    <div id="movies">
+      <h3 class="subheading">
+        PVギャラリー
+      </h3>
+      <p>見たいバージョンをクリックするとPVが見れます！！</p>
+      <div class="list clearfix">
+        <a href="https://www.youtube.com/embed/dIQsyuydGKw" target="PVbox">2017</a>
+        <a href="https://www.youtube.com/embed/LFk0AmkIna4" target="PVbox">2016</a>
+        <a href="https://www.youtube.com/embed/BgdFgwYMsTg" target="PVbox">2015-1</a>
+        <a href="https://www.youtube.com/embed/KtHsxhwNgWc" target="PVbox">2015-2</a>
+        <a href="https://www.dailymotion.com/embed/video/x1me745" target="PVbox">2014</a>
+        <a href="https://www.youtube.com/embed/JWgvxbFdFVA" target="PVbox">2013</a>
+        <a href="https://www.youtube.com/embed/2eqs4NSugWo" target="PVbox">2012</a>
+        <%#<a href="https://www.youtube.com/embed/dyqFY-ptJM4" target="PVbox">2010</a>%>
+      </div>
+      <iframe class="movie" src="https://www.youtube.com/embed/dIQsyuydGKw" name="PVbox" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+  <div class="sidemenu"> <!--右側のバー。SNS-->
+    <div class="heading">
+      <h2> <!--タイトル-->
+        メニュー
+      </h2>
+    </div>
+    <h3>
+      <a href="#photo">
+      Photoギャラリー
+      </a>
+    </h3>
+    <ul class="link">
+      <li>
+        <a href="https://picasaweb.google.com/100444033540252853603">
+          Photoアルバム4
+        </a>
+      </li>
+      <li>
+        <a href="https://picasaweb.google.com/115732404547904324259">
+          Photoアルバム3
+        </a>
+      </li>
+      <li>
+        <a href="https://picasaweb.google.com/111210836228860753663">
+          Photoアルバム2
+        </a>
+      </li>
+      <li class="hidden">
+        <a href="#">
+          Photoアルバム1
+        </a>
+      </li>
+    </ul>
+    <h3>
+      <a href="#movies">
+      PVギャラリー
+      </a>
+    </h3>
+  </div>
+</div>
